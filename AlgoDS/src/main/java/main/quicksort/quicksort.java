@@ -10,9 +10,10 @@ package main.quicksort;
 import java.util.Arrays;
 
 public class quicksort {
+
     static int partition(int[] arr, int low, int high) {
         int pivot = arr[high]; //select pivot, can be random, here is high
-        int i = (low - 1);
+        int i = low - 1; //moves behind the increment j to ensure elements are shifted to left of pivot
         for (int j = low; j < high; j++) {
             //if lower, move to left of pivot
             if (arr[j] < pivot) {
@@ -41,7 +42,7 @@ public class quicksort {
     }
 
     public static void main(String[] args) {
-        int[] arr = { 10, 7, 8, 9, 1, 5 };
+        int[] arr = {10, 7, 8, 9, 1, 5 };
 
         sort(arr, 0, arr.length - 1);
         System.out.println(Arrays.toString(arr));
