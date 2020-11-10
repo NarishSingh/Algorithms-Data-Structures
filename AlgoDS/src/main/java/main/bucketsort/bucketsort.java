@@ -13,43 +13,49 @@ import java.util.Collections;
 
 public class bucketsort {
 
-    static void bucketSort(Integer[] arr, int bucketSize) {
+    /**
+     * Sort from low to high, scattering data into buckets, sorting, then re-gathering
+     *
+     * @param arr        {Integer[]}
+     * @param bucketSize {int} choose bucket size based on volume and scatter of data coming in
+     * @return {Integer[]} sorted array
+     */
+    static Integer[] bucketSort(Integer[] arr, int bucketSize) {
         if (arr.length <= 0) {
-            return;
+            return arr;
         }
 
         //find min and max to determine range of data and how to break up buckets
         int min = Collections.min(Arrays.asList(arr));
         int max = Collections.max(Arrays.asList(arr));
         int numOfBuckets = Math.round((max - min) / bucketSize + 1);
-        ArrayList<ArrayList<Integer>> bucketContainer = new ArrayList<ArrayList<Integer>>();
 
-        //make buckets
+        //create container and buckets
+        ArrayList<ArrayList<Integer>> container = new ArrayList<>();
         for (int i = 0; i < numOfBuckets; i++) {
-            bucketContainer.add(new ArrayList<Integer>());
+            container.add(new ArrayList<>());
         }
 
         //based on how big an element is, it goes into a diff bucket
         for (int i = 0; i < arr.length; i++) {
             int bucketIndex = Math.round((arr[i] - min) / bucketSize); //kind of like finding its percentile
-            bucketContainer.get(bucketIndex).add(arr[i]);
+            container.get(bucketIndex).add(arr[i]);
         }
 
         //sort buckets internally
         for (int i = 0; i < numOfBuckets; i++) {
-            Collections.sort(bucketContainer.get(i));
+            Collections.sort(container.get(i));
         }
 
         //gather buckets, get the sorted arr
         int index = 0;
         for (int i = 0; i < numOfBuckets; i++) {
-            for (int j = 0; j < bucketContainer.get(i).size(); j++) {
-                arr[index++] = bucketContainer.get(i).get(j);
+            for (int j = 0; j < container.get(i).size(); j++) {
+                arr[index++] = container.get(i).get(j);
             }
         }
 
-
-        System.out.println(Arrays.toString(arr));
+        return arr;
     }
 
     public static void main(String[] args) {
@@ -57,10 +63,10 @@ public class bucketsort {
 
         //we will time it
         long startTime = System.nanoTime();
-        bucketSort(arr, 2);
+        System.out.println(Arrays.toString(bucketSort(arr, 2)));
         long endTime = System.nanoTime();
 
-        long duration = (endTime - startTime);
-        System.out.println(duration + " ns");
+        long duration = (endTime - startTime) / 1000;
+        System.out.println(duration + " µs");
     }
 }
