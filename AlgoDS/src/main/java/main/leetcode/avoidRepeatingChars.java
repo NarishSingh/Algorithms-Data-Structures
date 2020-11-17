@@ -1,4 +1,5 @@
 /*
+1576
 Given a string s containing only lower case English letters and the '?' character, convert all the '?' characters into lower case letters such that the final string does not contain any consecutive repeating characters. You cannot modify the non '?' characters.
 
 It is guaranteed that there are no consecutive repeating characters in the given string except for '?'.
