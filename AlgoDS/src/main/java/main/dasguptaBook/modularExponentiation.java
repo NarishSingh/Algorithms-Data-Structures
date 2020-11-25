@@ -5,10 +5,10 @@ public class modularExponentiation {
     /**
      * Quickly perform modular exponentiation by repeating x mod N while continually squaring x
      *
-     * @param x {int}
-     * @param y {int}
-     * @param N {int}
-     * @return {double}
+     * @param x {int} base
+     * @param y {int} exponent
+     * @param N {int} modulo value
+     * @return {double} result
      */
     static double modExp(int x, int y, int N) {
         if (y == 0) {
