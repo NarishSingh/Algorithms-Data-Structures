@@ -1,4 +1,4 @@
-package main.Queue;
+package main.queue;
 
 public class Queue {
     int arr[];

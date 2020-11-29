@@ -7,7 +7,7 @@ this will use an arb rotation, specified in the ctor
 -> index + rotation % 26 for encoding
 -> i - r % 26 for decoding
  */
-package main.gtgbook.ceasercipher;
+package main.gtgbook.chap3ceasercipher;
 
 public class CeaserCipher {
 

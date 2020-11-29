@@ -1,4 +1,4 @@
-package main.gtgbook.ceasercipher;
+package main.gtgbook.chap3ceasercipher;
 
 public class MessageCryptographyCC {
 
