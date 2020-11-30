@@ -28,5 +28,25 @@ public class sll {
         dubL.removeFirst();
         dubL.removeFirst();
         System.out.println("Remove twice: " + dubL.toString());
+
+        System.out.println("\nEquals?: " + intL.equals(dubL));
+
+        SinglyLinkedList<Double> copyDubL = new SinglyLinkedList<>();
+        copyDubL.addFirst(1.1);
+        copyDubL.addFirst(99.89);
+        copyDubL.addLast(6666666.3);
+        copyDubL.addFirst(0.123);
+        copyDubL.addLast(0.000005);
+        copyDubL.removeFirst();
+        copyDubL.removeFirst();
+
+        System.out.println("\nCopies Equals?: " + dubL.equals(copyDubL));
+
+        try {
+            SinglyLinkedList<Double> anotherCopyDubL = dubL.clone();
+            System.out.println("\nCloned Equals?: " + dubL.equals(anotherCopyDubL));
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
     }
 }

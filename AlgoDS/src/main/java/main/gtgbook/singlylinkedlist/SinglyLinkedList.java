@@ -4,7 +4,7 @@ includes a Node nested class
  */
 package main.gtgbook.singlylinkedlist;
 
-public class SinglyLinkedList<E> {
+public class SinglyLinkedList<E> implements Cloneable {
 
     /*Node nested class*/
 
@@ -155,5 +155,62 @@ public class SinglyLinkedList<E> {
                 ", tail=" + tail +
                 ", size=" + size +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        //test for null
+        if (o == null) {
+            return false;
+        }
+
+        //test for type equivalence, if pass -> cast to SLL
+        if (this.getClass() != o.getClass()) {
+            return false;
+        }
+
+        SinglyLinkedList<?> other = (SinglyLinkedList<?>) o; //use of java wildcard to handle generic
+
+        //test for size equivalence
+        if (this.size != other.size) {
+            return false;
+        }
+
+        //walk along lists and test for equivalence
+        Node<?> walkerA = head;
+        Node<?> walkerB = other.head;
+
+        while (walkerA != null) {
+            if (!walkerA.getElement().equals(walkerB.getElement())) {
+                return false;
+            }
+
+            walkerA = walkerA.getNext();
+            walkerB = walkerB.getNext();
+        }
+
+        return true;
+    }
+
+    @Override
+    public SinglyLinkedList<E> clone() throws CloneNotSupportedException {
+        SinglyLinkedList<E> other = (SinglyLinkedList<E>) super.clone(); //creates a shallow copy
+
+        //if not empty, we need a deep copy for true equivalence, walk through and copy
+        if (size > 0) {
+            other.head = new Node<>(this.head.getElement(), null);
+            Node<E> walker = this.head.getNext(); //for traversing remainder of list
+            Node<E> otherTail = other.head; //track most recently created node
+
+            while (walker != null) {
+                Node<E> newest = new Node<>(walker.getElement(), null);
+                otherTail.setNext(newest);
+                otherTail = newest;
+                walker = walker.getNext();
+            }
+
+        }
+
+        return other;
     }
 }
