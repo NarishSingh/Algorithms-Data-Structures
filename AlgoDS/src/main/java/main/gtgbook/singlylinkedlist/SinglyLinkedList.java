@@ -169,7 +169,7 @@ public class SinglyLinkedList<E> implements Cloneable {
             return false;
         }
 
-        SinglyLinkedList<?> other = (SinglyLinkedList<?>) o; //use of java wildcard to handle generic
+        SinglyLinkedList<?> other = (SinglyLinkedList<?>) o; //use of java wildcard to handle generic, suppresses unchecked cast warning
 
         //test for size equivalence
         if (this.size != other.size) {
@@ -192,6 +192,7 @@ public class SinglyLinkedList<E> implements Cloneable {
         return true;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public SinglyLinkedList<E> clone() throws CloneNotSupportedException {
         SinglyLinkedList<E> other = (SinglyLinkedList<E>) super.clone(); //creates a shallow copy
@@ -203,12 +204,12 @@ public class SinglyLinkedList<E> implements Cloneable {
             Node<E> otherTail = other.head; //track most recently created node
 
             while (walker != null) {
+                //create new node, link to clone's tail, then shift tail to newest node
                 Node<E> newest = new Node<>(walker.getElement(), null);
                 otherTail.setNext(newest);
                 otherTail = newest;
                 walker = walker.getNext();
             }
-
         }
 
         return other;
