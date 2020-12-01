@@ -177,7 +177,7 @@ public class SinglyLinkedList<E> implements Cloneable {
         }
 
         //walk along lists and test for equivalence
-        Node<?> walkerA = head;
+        Node<?> walkerA = this.head;
         Node<?> walkerB = other.head;
 
         while (walkerA != null) {
