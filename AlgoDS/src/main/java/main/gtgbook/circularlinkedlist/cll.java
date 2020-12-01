@@ -24,13 +24,20 @@ public class cll {
             System.out.println(intCL.last().toString());
         }
 
-        CircularLinkedList<Integer> intCLclone = new CircularLinkedList<>();
-        intCLclone.addFirst(3);
-        intCLclone.addFirst(2);
-        intCLclone.addFirst(1);
-        intCLclone.addLast(4);
-        intCLclone.addLast(5);
+        CircularLinkedList<Integer> secondIntCL = new CircularLinkedList<>();
+        secondIntCL.addFirst(3);
+        secondIntCL.addFirst(2);
+        secondIntCL.addFirst(1);
+        secondIntCL.addLast(4);
+        secondIntCL.addLast(5);
 
-        System.out.println("\nEquals?: " + intCL.equals(intCLclone));
+        System.out.println("\nEquals?: " + intCL.equals(secondIntCL));
+
+        try {
+            CircularLinkedList<Integer> cloned = intCL.clone();
+            System.out.println("\nCloned Equals?: " + intCL.equals(cloned));
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
     }
 }

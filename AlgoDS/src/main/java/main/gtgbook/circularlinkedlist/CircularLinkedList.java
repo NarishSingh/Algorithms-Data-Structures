@@ -3,7 +3,7 @@ SLL but the tail is set to refer back to the head, along navigation back to begi
  */
 package main.gtgbook.circularlinkedlist;
 
-public class CircularLinkedList<E> {
+public class CircularLinkedList<E> implements Cloneable {
 
     /*Node nested class*/
     /**
@@ -43,7 +43,6 @@ public class CircularLinkedList<E> {
     }
 
     //access
-
     /**
      * Get size of list
      *
@@ -89,7 +88,6 @@ public class CircularLinkedList<E> {
     }
 
     //update
-
     /**
      * Move first element to the back of the list
      */
@@ -187,5 +185,31 @@ public class CircularLinkedList<E> {
         } while (!walkerA.equals(this.tail));
 
         return true;
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public CircularLinkedList<E> clone() throws CloneNotSupportedException {
+        //make shallow copy
+        CircularLinkedList<E> clone = (CircularLinkedList<E>) super.clone();
+
+        //if not empty, make a deep copy
+        if (size > 0) {
+            //create new tail, walker, and tracker
+            clone.tail = new Node<>(this.tail.getElement(), null);
+            Node<E> walker = this.tail.getNext();
+            Node<E> cloneTail = clone.tail;
+
+            //using do-while, walk until return to return to tail
+            do {
+                //create new node, link to clone's tail, then shift tail and walker
+                Node<E> newest = new Node<>(walker.getElement(), null);
+                cloneTail.setNext(newest);
+                cloneTail = newest;
+                walker = walker.getNext();
+            } while (!walker.equals(this.tail));
+        }
+
+        return clone;
     }
 }
