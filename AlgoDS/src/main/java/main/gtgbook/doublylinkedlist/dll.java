@@ -16,6 +16,7 @@ public class dll {
 
         for (int i = 0; i < 5; i++) {
             System.out.println(intDL.first());
+            System.out.println(intDL.middle());
             System.out.println(intDL.last());
 
             intDL.removeFirst();

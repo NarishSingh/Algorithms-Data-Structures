@@ -9,7 +9,7 @@ public class DoublyLinkedList<E> {
      *
      * @param <E>
      */
-    public static class Node<E> {
+    private static class Node<E> {
 
         private E element;
         private Node<E> prev;
@@ -96,6 +96,29 @@ public class DoublyLinkedList<E> {
         }
 
         return trailer.getPrev().getElement();
+    }
+
+    /**
+     * Return the middle element, or left-middle if list is even
+     * R3.8
+     *
+     * @return {E} middle element
+     */
+    public E middle() {
+        if (isEmpty()) {
+            return null;
+        }
+
+        //begin at header
+        Node<E> middle = this.header;
+        double i = Math.ceil((double) this.size / 2); //ceiling to deal w odds
+
+        //iterate until at middle then retrieve element
+        for (int j = 0; j < i; j++) {
+            middle = middle.getNext();
+        }
+
+        return middle.getElement();
     }
 
     //update
