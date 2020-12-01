@@ -24,5 +24,23 @@ public class dll {
 
             System.out.println("---");
         }
+
+        DoublyLinkedList<Integer> test1 = new DoublyLinkedList<>();
+        DoublyLinkedList<Integer> test2 = new DoublyLinkedList<>();
+        test1.addFirst(3);
+        test1.addFirst(2);
+        test1.addFirst(1);
+        test2.addFirst(3);
+        test2.addFirst(2);
+        test2.addFirst(1);
+
+        System.out.println("\nEquals?: " + test1.equals(test2));
+
+        try {
+            DoublyLinkedList<Integer> cloned = intDL.clone();
+            System.out.println("\nCloned Equals?: " + intDL.equals(cloned));
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
     }
 }

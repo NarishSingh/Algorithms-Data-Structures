@@ -1,9 +1,8 @@
 package main.gtgbook.doublylinkedlist;
 
-public class DoublyLinkedList<E> {
+public class DoublyLinkedList<E> implements Cloneable {
 
     /*Nested Node class - with pointers to both neighbors*/
-
     /**
      * Node for Doubly Linked List
      *
@@ -198,5 +197,65 @@ public class DoublyLinkedList<E> {
         size--;
 
         return node.getElement();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        //test for null
+        if (o == null) {
+            return false;
+        }
+
+        //test for type
+        if (this.getClass() != o.getClass()) {
+            return false;
+        }
+        DoublyLinkedList<?> other = (DoublyLinkedList<?>) o;
+
+        //test for size
+        if (this.size != other.size) {
+            return false;
+        }
+
+        //walk from first node ahead of header and test each, breaking on trailer
+        Node<?> walkerA = this.header.getNext();
+        Node<?> walkerB = other.header.getNext();
+
+        while (walkerA != this.trailer) {
+            if (!walkerA.getElement().equals(walkerB.getElement())) {
+                return false;
+            }
+
+            walkerA = walkerA.getNext();
+            walkerB = walkerB.getNext();
+        }
+
+        return true;
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public DoublyLinkedList<E> clone() throws CloneNotSupportedException {
+        //make shallow copy
+        DoublyLinkedList<E> clone = (DoublyLinkedList<E>) super.clone();
+
+        //if not empty, make deep copy
+        if (size > 0) {
+            //create sentinels, walker and tracker
+            clone.header = new Node<>(this.header.getElement(), null, this.trailer);
+            clone.trailer = new Node<>(this.trailer.getElement(), this.header, null);
+            Node<E> walker = this.header.getNext();
+            Node<E> cloneTail = clone.header;
+
+            //walk until trailer
+            while (walker != this.trailer) {
+                Node<E> newest = new Node<>(walker.getElement(), walker.getPrev(), null);
+                cloneTail.setNext(newest);
+                cloneTail = newest;
+                walker = walker.getNext();
+            }
+        }
+
+        return clone;
     }
 }
