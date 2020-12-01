@@ -133,7 +133,7 @@ public class CircularLinkedList<E> {
     /**
      * Remove "head" element from front of the list
      *
-     * @return
+     * @return {E} element from front of list
      */
     public E removeFirst() {
         if (isEmpty()) {
@@ -151,5 +151,41 @@ public class CircularLinkedList<E> {
         size--;
 
         return head.getElement();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        //test for null
+        if (o == null) {
+            return false;
+        }
+
+        //test for type equivalence
+        if (this.getClass() != o.getClass()) {
+            return false;
+        }
+
+        CircularLinkedList<?> other = (CircularLinkedList<?>) o;
+
+        //test for size equivalence
+        if (this.size != other.size()) {
+            return false;
+        }
+
+        //walk and test
+        //do-while to force walker off tail, then check when walker revisits tail to break
+        Node<?> walkerA = this.tail;
+        Node<?> walkerB = other.tail;
+
+        do {
+            if (!walkerA.getElement().equals(walkerB.getElement())) {
+                return false;
+            }
+
+            walkerA = walkerA.getNext();
+            walkerB = walkerB.getNext();
+        } while (!walkerA.equals(this.tail));
+
+        return true;
     }
 }

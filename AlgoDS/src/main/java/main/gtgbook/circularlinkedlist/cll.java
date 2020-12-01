@@ -23,5 +23,14 @@ public class cll {
             System.out.println(intCL.first().toString());
             System.out.println(intCL.last().toString());
         }
+
+        CircularLinkedList<Integer> intCLclone = new CircularLinkedList<>();
+        intCLclone.addFirst(3);
+        intCLclone.addFirst(2);
+        intCLclone.addFirst(1);
+        intCLclone.addLast(4);
+        intCLclone.addLast(5);
+
+        System.out.println("\nEquals?: " + intCL.equals(intCLclone));
     }
 }
