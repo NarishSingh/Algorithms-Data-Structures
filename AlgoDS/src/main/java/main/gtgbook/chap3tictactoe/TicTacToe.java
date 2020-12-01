@@ -39,7 +39,9 @@ public class TicTacToe {
      * @throws IllegalArgumentException if illegal move attempted
      */
     public void putMark(int i, int j) throws IllegalArgumentException {
-        if (i < 0 || i > 2 || j < 0 || j > 2) {
+        if (winner() == 0) {
+            throw new IllegalArgumentException("Game is won already");
+        } else if (i < 0 || i > 2 || j < 0 || j > 2) {
             throw new IllegalArgumentException("Invalid position");
         } else if (board[i][j] != EMPTY) {
             throw new IllegalArgumentException("Position occupied");

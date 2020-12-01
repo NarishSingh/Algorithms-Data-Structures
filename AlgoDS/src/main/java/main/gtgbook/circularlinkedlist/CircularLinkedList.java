@@ -109,8 +109,12 @@ public class CircularLinkedList<E> {
             tail = new Node<>(e, null); //if list was empty, new node will be only elem
             this.tail.setNext(tail); //link to itself circularly
         } else {
-            Node<E> newest = new Node<>(e, tail.getNext());
-            tail.setNext(newest);
+            //link tail to newly created node, since circuarly connected
+            tail.setNext(new Node<>(e, tail.getNext()));
+
+            //revision from R3.7
+//            Node<E> newest = new Node<>(e, tail.getNext());
+//            tail.setNext(newest);
         }
 
         size++;
