@@ -14,11 +14,11 @@ public class BinarySearch {
     /**
      * Perform binary search on an array
      *
-     * @param data   {int[]} data to search through
+     * @param data   {int[]} array to search through
      * @param target {int} what to search for
      * @param low    {int} the lower bound index to search from
      * @param high   {int} the upper bound index to search from
-     * @return {boolean} true if target is present
+     * @return {boolean} true if target is present, false otherwise
      */
     public static boolean binarySearch(int[] data, int target, int low, int high) {
         if (low > high) {
@@ -36,6 +36,16 @@ public class BinarySearch {
         }
     }
 
+    /**
+     * Binary search for an unsorted array
+     *
+     * @param data   {int[]} array to search through
+     * @param target {int} what to search for
+     * @param low    {int} the lower bound index to search from
+     * @param high   {int} the upper bound index to search from
+     * @return {boolean} true if target is present, false otherwise
+     * @throws IllegalAccessException low and high must range from 0 to data.length or else search will be out of bouds
+     */
     public static boolean binarySearchWithSort(int[] data, int target, int low, int high) throws IllegalAccessException {
         if (low < 0 || high > data.length) {
             throw new IllegalAccessException("Search will be out of bounds");
@@ -79,7 +89,7 @@ public class BinarySearch {
         System.out.println("\n===unsorted===");
         System.out.println(Arrays.toString(unsorted));
         try {
-            System.out.println(binarySearchWithSort(data2, 9, 0, unsorted.length));
+            System.out.println(binarySearchWithSort(data2, 9, 0, data2.length));
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
