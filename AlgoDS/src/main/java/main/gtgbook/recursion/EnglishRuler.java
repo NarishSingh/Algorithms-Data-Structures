@@ -4,7 +4,7 @@ english ruler always have inches, half and quarter inches, but follows that stru
 it is a self-recursive structure, no matter the level of magnification
  */
 
-package main.gtgbook.chap4englishruler;
+package main.gtgbook.recursion;
 
 public class EnglishRuler {
 
