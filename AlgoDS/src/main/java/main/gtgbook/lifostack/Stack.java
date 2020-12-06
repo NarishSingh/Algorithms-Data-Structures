@@ -1,3 +1,6 @@
+/*
+Stack API
+ */
 package main.gtgbook.lifostack;
 
 public interface Stack<E> {
