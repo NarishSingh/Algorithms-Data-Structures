@@ -59,4 +59,23 @@ public class ArrayStack<E> implements Stack<E> {
 
         return removed;
     }
+
+    /**
+     * Reverse an array using the stack
+     *
+     * @param e   {E[]} any generic array
+     * @param <E> allows for autoboxing between array to arraystack
+     */
+    public static <E> void reverse(E[] e) {
+        //temporarily store the stack as is
+        Stack<E> buffer = new ArrayStack<>();
+        for (int i = 0; i < e.length; i++) {
+            buffer.push(e[i]);
+        }
+
+        //pop the buffer one by one to re-write the stack
+        for (int i = 0; i < e.length; i++) {
+            e[i] = buffer.pop();
+        }
+    }
 }
