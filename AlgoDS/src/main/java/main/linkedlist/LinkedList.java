@@ -23,10 +23,10 @@ public class LinkedList {
 
     /**
      * Insert new node to LL
+     *
      * @param val {int}
      */
     public void addNode(int val) {
-
         Node newNode = new Node(val);
 
         if (this.head == null) {
@@ -39,12 +39,12 @@ public class LinkedList {
 
             current.next = newNode;
         }
-
     }
 
     /**
      * Remove a node
-     * @param val
+     *
+     * @param val {int} value of node to be deleted
      */
     public void deleteNode(int val) {
         Node current = this.head;

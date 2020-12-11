@@ -31,13 +31,13 @@ public class ArrayQueue<E> implements Queue<E> {
 
     @Override
     public void enqueue(E e) throws IllegalStateException {
-        if (sz == data.length) {
+        if (this.sz == data.length) {
             throw new IllegalStateException("Queue is full");
         }
 
-        int avail = (f + sz) % data.length; //check available index with modulo
+        int avail = (this.f + this.sz) % data.length; //check available index with modulo
         data[avail] = e;
-        sz++;
+        this.sz++;
     }
 
     @Override
