@@ -4,11 +4,13 @@ good for use cases where amount of data needed is known
  */
 package main.gtgbook.lifostack;
 
+import java.util.Arrays;
+
 public class ArrayStack<E> implements Stack<E> {
 
     public static final int CAPACITY = 1000; //default arr cap
     private E[] data;
-    private int t = -1;
+    private int t = -1; //index of top element, such that size = t+1
 
     public ArrayStack() {
         this(CAPACITY); //create max stack
@@ -58,6 +60,58 @@ public class ArrayStack<E> implements Stack<E> {
         t--;
 
         return removed;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        //null test
+        if (o == null) {
+            return false;
+        }
+
+        //type equivalence test, if passed cast to array stack
+        if (this.getClass() != o.getClass()) {
+            return false;
+        }
+        ArrayStack<?> other = (ArrayStack<?>) o;
+
+        //test for size equivalence
+        if (this.size() != other.size()) {
+            return false;
+        }
+
+        //walk stack and test element equivalence
+        for (int i = 0; i < this.size(); i++) {
+            if (this.data[i] != other.data[i]) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    protected ArrayStack<E> clone() throws CloneNotSupportedException {
+        //create shallow copy
+        ArrayStack<E> other = (ArrayStack<E>) super.clone();
+
+        //if populated, need deep copy
+        if (this.size() > 0) {
+            for (int i = 0; i < this.size(); i++) {
+                other.push(this.data[i]);
+            }
+        }
+
+        return other;
+    }
+
+    @Override
+    public String toString() {
+        return "ArrayStack{" +
+                "data=" + Arrays.toString(data) +
+                ", t=" + t +
+                '}';
     }
 
     /**

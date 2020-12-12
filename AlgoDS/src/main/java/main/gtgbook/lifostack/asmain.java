@@ -28,5 +28,20 @@ public class asmain {
 
         reverse(arr);
         System.out.println(Arrays.toString(arr));
+
+        //clone and equals
+        ArrayStack<Integer> a = new ArrayStack<>(3);
+        a.push(1);
+        a.push(2);
+        a.push(3);
+        try {
+            System.out.println("\nOriginal: " + a.toString());
+
+            ArrayStack<Integer> cloned = a.clone(); //FIXME is throwing CloneNotSupportedException
+            System.out.println("Cloned: " + cloned.toString());
+            System.out.println(a.equals(cloned));
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
     }
 }
