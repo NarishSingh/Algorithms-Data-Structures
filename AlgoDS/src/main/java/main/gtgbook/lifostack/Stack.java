@@ -1,5 +1,5 @@
 /*
-Stack API
+Stack API - last in, first out
  */
 package main.gtgbook.lifostack;
 

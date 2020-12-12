@@ -41,6 +41,13 @@ public class LinkedStack<E> implements Stack<E> {
         return list.removeFirst();
     }
 
+    @Override
+    public String toString() {
+        return "LinkedStack{" +
+                "list=" + list +
+                '}';
+    }
+
     /**
      * Check for matching delimiters ({[ in a string
      *

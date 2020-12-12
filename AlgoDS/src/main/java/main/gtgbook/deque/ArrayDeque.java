@@ -94,7 +94,6 @@ public class ArrayDeque<E> implements Deque<E> {
     }
 
     /*helper*/
-
     /**
      * Check size of array deque
      *
