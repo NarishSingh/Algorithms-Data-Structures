@@ -6,7 +6,7 @@ package main.gtgbook.lifostack;
 
 import java.util.Arrays;
 
-public class ArrayStack<E> implements Stack<E> {
+public class ArrayStack<E> implements Stack<E>, Cloneable {
 
     public static final int CAPACITY = 1000; //default arr cap
     private E[] data;
@@ -98,8 +98,8 @@ public class ArrayStack<E> implements Stack<E> {
 
         //if populated, need deep copy
         if (this.size() > 0) {
-            for (int i = 0; i < this.size(); i++) {
-                other.push(this.data[i]);
+            if (this.size() >= 0) {
+                System.arraycopy(this.data, 0, other.data, 0, this.size());
             }
         }
 
