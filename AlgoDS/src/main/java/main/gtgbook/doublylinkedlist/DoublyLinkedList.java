@@ -1,3 +1,6 @@
+/*
+This essentially implemented a doubly linked queue
+ */
 package main.gtgbook.doublylinkedlist;
 
 public class DoublyLinkedList<E> implements Cloneable {

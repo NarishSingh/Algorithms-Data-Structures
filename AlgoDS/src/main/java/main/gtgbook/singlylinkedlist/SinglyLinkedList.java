@@ -52,7 +52,6 @@ public class SinglyLinkedList<E> implements Cloneable {
     }
 
     //access methods
-
     /**
      * Get size of list
      *
