@@ -22,9 +22,12 @@ Hence, nums = [0,1,1,2,1,3,2,3], and the maximum is 3.
  */
 package main.leetcode;
 
+import java.util.Arrays;
+
 public class maxInGenerateArr {
 
     static public int getMaximumGenerated(int n) {
+        //edge cases
         if (n <= 0) {
             return 0;
         }
@@ -33,7 +36,7 @@ public class maxInGenerateArr {
             return 1;
         }
 
-        int max = 0;
+        //create array based on rules of generation
         int[] nums = new int[n + 1];
 
         nums[0] = 0;
@@ -48,6 +51,10 @@ public class maxInGenerateArr {
             }
         }
 
+
+        /*
+        int max = 0;
+
         for (int i = 0; i < nums.length; i++) {
             if (nums[i] > max) {
                 max = nums[i];
@@ -55,6 +62,9 @@ public class maxInGenerateArr {
         }
 
         return max;
+         */
+
+        return Arrays.stream(nums).max().getAsInt();
     }
 
     public static void main(String[] args) {

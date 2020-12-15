@@ -38,6 +38,7 @@ public class search2Dmatrix {
     }
 
     static public boolean searchMatrix(int[][] matrix, int target) {
+        //find num of rows and length, edge cases
         int m = matrix.length; //num of rows
         if (m <= 0) {
             return false;
