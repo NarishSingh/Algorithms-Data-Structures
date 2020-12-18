@@ -43,6 +43,7 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
         }
     }
 
+    /*Linked Positional List proper*/
     private Node<E> header;
     private Node<E> trailer;
     private int size = 0;
