@@ -20,7 +20,7 @@ public class almain {
 
         /*iterator*/
         Iterator<Integer> lit = l.iterator();
-        while (lit.hasNext()){
+        while (lit.hasNext()) {
             System.out.println(lit.next());
         }
     }

@@ -41,9 +41,10 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Iterator ctor
+     *
      * @return {Iterator} for the arraylist
      */
-    public Iterator<E> iterator(){
+    public Iterator<E> iterator() {
         return new ArrayIterator();
     }
 
