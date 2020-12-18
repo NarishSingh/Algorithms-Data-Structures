@@ -1,6 +1,53 @@
 package main.gtgbook.list;
 
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 public class ArrayList<E> implements List<E> {
+
+    /**
+     * Iterator implementation - nonstatic so it can make reference to the containing list and access the array
+     */
+    private class ArrayIterator implements Iterator<E> {
+        private int i = 0;
+        private boolean removable = false;
+
+        @Override
+        public boolean hasNext() {
+            return this.i < size;
+        }
+
+        @Override
+        public E next() throws NoSuchElementException {
+            if (this.i == size) {
+                throw new NoSuchElementException("At end of list");
+            }
+
+            this.removable = true;
+            return data[this.i++]; //incr = iteration, next call is ready to return next element if not at end of list
+        }
+
+        @Override
+        public void remove() throws IllegalStateException {
+            if (!removable) {
+                throw new IllegalStateException("Nothing to remove");
+            }
+
+            ArrayList.this.remove(i - 1); //remove last one called
+            this.i--; //shift to left
+            this.removable = false; //don't remove again until next has been called
+        }
+    }
+
+    /**
+     * Iterator ctor
+     * @return {Iterator} for the arraylist
+     */
+    public Iterator<E> iterator(){
+        return new ArrayIterator();
+    }
+
+    /*ArrayList proper*/
     public static final int CAP = 16;
     private E[] data;
     private int size = 0;
@@ -54,8 +101,8 @@ public class ArrayList<E> implements List<E> {
             this.resize(2 * data.length);
         }
 
-        for (int j = this.size - 1; j >= i; j--) {
-            data[j + 1] = data[j];
+        if (this.size - i >= 0) {
+            System.arraycopy(data, i, data, i + 1, this.size - i);
         }
 
         data[i] = e;
@@ -66,8 +113,8 @@ public class ArrayList<E> implements List<E> {
     public E remove(int i) throws IndexOutOfBoundsException {
         checkIndex(i, this.size);
         E removed = data[i];
-        for (int j = i; j < this.size - 1; j++) {
-            data[j] = data[j + 1];
+        if (this.size - 1 - i >= 0) {
+            System.arraycopy(data, i + 1, data, i, this.size - 1 - i);
         }
         data[this.size - 1] = null;
         size--;
@@ -95,8 +142,8 @@ public class ArrayList<E> implements List<E> {
     @SuppressWarnings("unchecked")
     protected void resize(int capacity) {
         E[] temp = (E[]) new Object[capacity];
-        for (int i = 0; i < this.size; i++) {
-            temp[i] = data[i];
+        if (this.size >= 0) {
+            System.arraycopy(data, 0, temp, 0, this.size);
         }
         this.data = temp;
     }
