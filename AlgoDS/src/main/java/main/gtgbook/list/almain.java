@@ -22,6 +22,9 @@ public class almain {
         Iterator<Integer> lit = l.iterator();
         while (lit.hasNext()) {
             System.out.println(lit.next());
+            lit.remove();
         }
+
+        System.out.println(l.isEmpty());
     }
 }
