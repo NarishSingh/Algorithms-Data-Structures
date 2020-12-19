@@ -1,9 +1,11 @@
 package main.gtgbook.positionallist;
 
+import java.util.Iterator;
+
 public class lplmain {
 
     public static void main(String[] args) {
-        PositionalList<Integer> l = new LinkedPositionalList<>();
+        LinkedPositionalList<Integer> l = new LinkedPositionalList<>();
 
         System.out.println(l.isEmpty());
         Position<Integer> first = l.addFirst(1);
@@ -33,5 +35,18 @@ public class lplmain {
         Integer firstRemoved = l.remove(first);
         System.out.println(l.first().getElement());
         System.out.println("Removed = " + firstRemoved);
+
+        /*Position iteration*/
+        System.out.println("\nElements at Positions:");
+        for (Position<Integer> p : l.positions()) {
+            System.out.println(p.getElement());
+        }
+
+        /*Element iteration*/
+        System.out.println("\nAll Elements:");
+        Iterator<Integer> elemItr = l.iterator();
+        while (elemItr.hasNext()) {
+            System.out.println(elemItr.next());
+        }
     }
 }
