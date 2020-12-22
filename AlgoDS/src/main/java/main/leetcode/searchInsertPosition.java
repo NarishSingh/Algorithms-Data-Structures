@@ -35,6 +35,7 @@ import java.util.Arrays;
 public class searchInsertPosition {
 
     public static int searchInsert(int[] nums, int target) {
+        /*
         //if outside of bounds, return the bound
         if (target <= nums[0]) {
             return 0;
@@ -56,9 +57,21 @@ public class searchInsertPosition {
                 return searchInsert(Arrays.copyOfRange(nums, 0, mid), target);
             } else {
                 //greater than, recursively search upper half
-                return searchInsert(Arrays.copyOfRange(nums, mid + 1, nums.length), target);
+                return searchInsert(Arrays.copyOfRange(nums, mid, nums.length), target);
             }
         }
+         */
+
+        //since sorted, if a value is > this means the target can be placed in the previous position
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == target){
+                return i;
+            } else if (nums[i] > target){
+                return i;
+            }
+        }
+
+        return nums.length; //if none are > target, target fits at the end
     }
 
     public static void main(String[] args) {

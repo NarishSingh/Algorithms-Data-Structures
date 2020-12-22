@@ -25,12 +25,14 @@ public class validPerfectSquare {
             return true;
         }
 
+        //O(n) not accepted by online compiler
         for (int i = 1; i < num; i++) {
             //cast to double to stop int division causing false positives
             if (i == (double) num / i) {
                 return true;
             }
         }
+
 
         return false;
     }
