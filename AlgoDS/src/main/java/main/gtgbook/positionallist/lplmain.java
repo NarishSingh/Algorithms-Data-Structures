@@ -4,6 +4,35 @@ import java.util.Iterator;
 
 public class lplmain {
 
+    /**
+     * Sort using insertion sort
+     *
+     * @param l {PositionalList} a LinkedPositionalList of int
+     */
+    public static void insertionSort(PositionalList<Integer> l) {
+        Position<Integer> marker = l.first();
+
+        while (marker != l.last()) {
+            //create a pivot after marker
+            Position<Integer> pivot = l.after(marker);
+            int val = pivot.getElement();
+
+            if (val > marker.getElement()) {
+                marker = pivot; //if in order, just move up the marker
+            } else {
+                //if out of order, walk backward to find proper place position
+                Position<Integer> walk = marker;
+                while (walk != l.first() && l.before(walk).getElement() > val) {
+                    walk = l.before(walk);
+                }
+
+                //insert to sorted position
+                l.remove(pivot);
+                l.addBefore(walk, val);
+            }
+        }
+    }
+
     public static void main(String[] args) {
         LinkedPositionalList<Integer> l = new LinkedPositionalList<>();
 
@@ -48,5 +77,17 @@ public class lplmain {
         while (elemItr.hasNext()) {
             System.out.println(elemItr.next());
         }
+
+        /*sort*/
+        LinkedPositionalList<Integer> l2 = new LinkedPositionalList<>();
+        l2.addFirst(7);
+        l2.addLast(9);
+        l2.addLast(1);
+        l2.addLast(65);
+        l2.addLast(87);
+        l2.addLast(3);
+        insertionSort(l2);
+        System.out.println("\n" + l2.first().getElement());
+        System.out.println(l2.last().getElement());
     }
 }
