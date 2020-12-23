@@ -117,7 +117,7 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
         }
     }
 
-    public Iterator<E> iterator() {
+    public Iterator<E> createIterator() {
         return new ElementIterator();
     }
 
@@ -215,7 +215,6 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
     }
 
     /*Helpers*/
-
     /**
      * Validate the position and return its node - this ensures Node class is encapsulated behind a Position
      *
