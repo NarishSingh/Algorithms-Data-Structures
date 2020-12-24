@@ -73,7 +73,7 @@ public class lplmain {
 
         /*Element iteration*/
         System.out.println("\nAll Elements:");
-        Iterator<Integer> elemItr = l.createIterator();
+        Iterator<Integer> elemItr = l.iterator();
         while (elemItr.hasNext()) {
             System.out.println(elemItr.next());
         }

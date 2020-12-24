@@ -117,7 +117,7 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
         }
     }
 
-    public Iterator<E> createIterator() {
+    public Iterator<E> iterator() {
         return new ElementIterator();
     }
 

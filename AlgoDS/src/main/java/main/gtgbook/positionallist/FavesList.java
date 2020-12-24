@@ -77,25 +77,22 @@ public class FavesList<E> {
         }
     }
 
-    //FIXME not working
-    /*
+/*
     public Iterable<E> getFavorites(int j) throws IllegalArgumentException {
         if (j < 0 || j > size()) {
             throw new IllegalArgumentException("Invalid amount");
         }
 
         PositionalList<E> result = new LinkedPositionalList<>();
-        Iterator<Item<E>> itr = list.createIterator();
+        Iterator<Item<E>> itr = list.iterator();
         for (int i = 0; i < j; i++) {
             result.addLast(itr.next().getValue());
         }
         return result;
     }
-
-     */
+ */
 
     /*helpers*/
-
     /**
      * Get an element at a given position
      *
