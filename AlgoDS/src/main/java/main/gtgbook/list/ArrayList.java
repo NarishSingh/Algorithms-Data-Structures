@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class ArrayList<E> implements List<E> {
+public class ArrayList<E> implements List<E>, Cloneable {
 
     /**
      * Iterator implementation - nonstatic so it can make reference to the containing list and access the array
@@ -123,6 +123,59 @@ public class ArrayList<E> implements List<E> {
         return removed;
     }
 
+    @Override
+    public String toString() {
+        return "ArrayList{" +
+                "data=" + Arrays.toString(data) +
+                ", size=" + size +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        //null test
+        if (o == null) {
+            return false;
+        }
+
+        //type test and cast
+        if (this.getClass() != o.getClass()) {
+            return false;
+        }
+        ArrayList<?> other = (ArrayList<?>) o;
+
+        //size test
+        if (this.size != other.size()) {
+            return false;
+        }
+
+        //walk and test elements
+        for (int i = 0; i < this.size(); i++) {
+            if (this.get(i) != other.get(i)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    protected ArrayList<E> clone() throws CloneNotSupportedException {
+        //shallow copy
+        ArrayList<E> clone = (ArrayList<E>) super.clone();
+
+        //deep copy if not empty
+        if (this.size() > 0) {
+            for (int i = 0; i < this.size(); i++) {
+                clone.set(i, this.get(i)); //set, because add will resize list and leave in the wrong data
+            }
+        }
+
+        return clone;
+    }
+
+    /*HELPERS*/
     /**
      * Verifies parameterized index is in range
      *
@@ -148,13 +201,5 @@ public class ArrayList<E> implements List<E> {
             System.arraycopy(data, 0, temp, 0, this.size);
         }
         this.data = temp;
-    }
-
-    @Override
-    public String toString() {
-        return "ArrayList{" +
-                "data=" + Arrays.toString(data) +
-                ", size=" + size +
-                '}';
     }
 }

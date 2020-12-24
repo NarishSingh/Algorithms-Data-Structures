@@ -22,6 +22,15 @@ public class almain {
 
         System.out.println("\n");
 
+        /*clone and equals*/
+        try {
+            ArrayList<Integer> cloned = l.clone();
+            System.out.println(cloned.toString());
+            System.out.println("Clone Equals? = " + l.equals(cloned));
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+
         /*iterator*/
         Iterator<Integer> lit = l.iterator();
         while (lit.hasNext()) {

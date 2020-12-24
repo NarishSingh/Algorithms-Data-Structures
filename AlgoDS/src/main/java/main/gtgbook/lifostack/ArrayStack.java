@@ -98,9 +98,7 @@ public class ArrayStack<E> implements Stack<E>, Cloneable {
 
         //if populated, need deep copy
         if (this.size() > 0) {
-            if (this.size() >= 0) {
-                System.arraycopy(this.data, 0, other.data, 0, this.size());
-            }
+            System.arraycopy(this.data, 0, other.data, 0, this.size());
         }
 
         return other;
