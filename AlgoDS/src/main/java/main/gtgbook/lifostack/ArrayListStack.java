@@ -22,12 +22,12 @@ public class ArrayListStack<E> implements Stack<E>, Cloneable {
 
     @Override
     public int size() {
-        return this.t + 1;
+        return t + 1;
     }
 
     @Override
     public boolean isEmpty() {
-        return this.t == -1;
+        return t == -1;
     }
 
     @Override

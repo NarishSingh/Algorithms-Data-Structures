@@ -13,12 +13,16 @@ public class alsmain {
         System.out.println(als.toString());
         System.out.println(als.top());
 
-        System.out.println("\n");
+        als.pop();
+        System.out.println(als.top());
 
-        //FIXME this is not popping all for some reason
-        for (int i = 0; i < als.size(); i++) {
-            System.out.println(als.top());
-            als.pop();
+        /*clone and equals*/
+        try {
+            ArrayListStack<Integer> cloned = als.clone();
+            System.out.println(cloned.toString());
+            System.out.println("Clone Equals?: " + als.equals(cloned));
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
         }
     }
 }
