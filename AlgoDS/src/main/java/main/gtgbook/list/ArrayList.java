@@ -1,5 +1,6 @@
 package main.gtgbook.list;
 
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -147,5 +148,13 @@ public class ArrayList<E> implements List<E> {
             System.arraycopy(data, 0, temp, 0, this.size);
         }
         this.data = temp;
+    }
+
+    @Override
+    public String toString() {
+        return "ArrayList{" +
+                "data=" + Arrays.toString(data) +
+                ", size=" + size +
+                '}';
     }
 }
