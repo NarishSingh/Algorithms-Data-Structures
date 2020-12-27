@@ -3,7 +3,9 @@ Treats array as circular by default to ensure
  */
 package main.gtgbook.deque;
 
-public class ArrayDeque<E> implements Deque<E> {
+import java.util.Arrays;
+
+public class ArrayDeque<E> implements Deque<E>, Cloneable {
 
     private E[] data;
     private int f = 0; //front of array
@@ -91,6 +93,55 @@ public class ArrayDeque<E> implements Deque<E> {
         data[tail] = null;
         this.sz--;
         return removed;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        //null test
+        if (o == null) {
+            return false;
+        }
+
+        //type test and cast
+        if (o.getClass() != this.getClass()) {
+            return false;
+        }
+        ArrayDeque<?> other = (ArrayDeque<?>) o;
+
+        //size test
+        if (other.size() != this.size()) {
+            return false;
+        }
+
+        //element test
+        for (int i = 0; i < this.size(); i++) {
+            if (this.data[i] != other.data[i]) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    protected ArrayDeque<E> clone() throws CloneNotSupportedException {
+        ArrayDeque<E> clone = (ArrayDeque<E>) super.clone();
+
+        if (this.size()>0){
+            System.arraycopy(this.data, 0, clone.data, 0, this.size());
+        }
+
+        return clone;
+    }
+
+    @Override
+    public String toString() {
+        return "ArrayDeque{" +
+                "data=" + Arrays.toString(data) +
+                ", f=" + f +
+                ", sz=" + sz +
+                '}';
     }
 
     /*helper*/

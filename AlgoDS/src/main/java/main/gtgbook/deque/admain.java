@@ -3,7 +3,7 @@ package main.gtgbook.deque;
 public class admain {
 
     public static void main(String[] args) {
-        Deque<Integer> d = new ArrayDeque<>(5);
+        ArrayDeque<Integer> d = new ArrayDeque<>(5);
 
         d.addFirst(1);
         d.addFirst(0);
@@ -24,5 +24,16 @@ public class admain {
         System.out.println(d.last());
         d.removeLast();
         System.out.println(d.last());
+
+        System.out.println("Original: " + d.toString());
+
+        /*clone and equals*/
+        try {
+            ArrayDeque<Integer> cloned = d.clone();
+            System.out.println("\n" + cloned.toString());
+            System.out.println("Clone Equals?: " + d.equals(cloned));
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
     }
 }

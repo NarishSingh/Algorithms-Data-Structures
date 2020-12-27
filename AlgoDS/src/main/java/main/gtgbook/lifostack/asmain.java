@@ -37,7 +37,7 @@ public class asmain {
         try {
             System.out.println("\nOriginal: " + a.toString());
 
-            ArrayStack<Integer> cloned = a.clone(); //FIXME is throwing CloneNotSupportedException
+            ArrayStack<Integer> cloned = a.clone();
             System.out.println("Cloned: " + cloned.toString());
             System.out.println(a.equals(cloned));
         } catch (CloneNotSupportedException e) {
