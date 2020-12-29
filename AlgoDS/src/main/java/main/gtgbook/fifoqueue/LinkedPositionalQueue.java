@@ -42,11 +42,4 @@ public class LinkedPositionalQueue<E> implements Queue<E>, Cloneable {
     public E remove(Position<E> p){
         return list.remove(p);
     }
-
-    @Override
-    public String toString() {
-        return "LinkedPositionalQueue{" +
-                "list=" + list +
-                '}';
-    }
 }
