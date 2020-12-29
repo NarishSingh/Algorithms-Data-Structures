@@ -31,6 +31,8 @@ public class almain {
             e.printStackTrace();
         }
 
+        System.out.println();
+
         /*iterator*/
         Iterator<Integer> lit = l.iterator();
         while (lit.hasNext()) {
@@ -39,5 +41,24 @@ public class almain {
         }
 
         System.out.println(l.isEmpty());
+
+        /*contains()*/
+        ArrayList<Integer> test = new ArrayList<>(3);
+        test.add(0, 0);
+        test.add(1, 1);
+        test.add(2, 2);
+        //valid searches
+        System.out.println("\n" + test.contains(0));
+        System.out.println(test.contains(2));
+        System.out.println(test.contains(99));
+        //invalid searches - all should fail due to type
+        System.out.println(test.contains("Bad type input"));
+        System.out.println(test.contains(false));
+        System.out.println(test.contains(1.23567));
+        System.out.println(test.contains('X'));
+
+        /*clear()*/
+        test.clear();
+        System.out.println("\nCleared?: " + test.isEmpty());
     }
 }

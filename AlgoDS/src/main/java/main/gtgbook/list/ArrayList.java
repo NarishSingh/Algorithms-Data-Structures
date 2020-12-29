@@ -176,6 +176,7 @@ public class ArrayList<E> implements List<E>, Cloneable {
     }
 
     /*HELPERS*/
+
     /**
      * Verifies parameterized index is in range
      *
@@ -201,5 +202,51 @@ public class ArrayList<E> implements List<E>, Cloneable {
             System.arraycopy(data, 0, temp, 0, this.size);
         }
         this.data = temp;
+    }
+
+    /*Implementations of Collections intrf methods*/
+
+    /**
+     * Check of list contains parameterized obj
+     *
+     * @param o {Object} element to search for in list
+     * @return {boolean} true if contains element, false otherwise. Will throw false if types don't match
+     */
+    public boolean contains(Object o) {
+        //type check - since type is uniform, check against first of arraylist
+        if (this.get(0).getClass() != o.getClass()) {
+            return false;
+        }
+
+        //scan list
+        //manual
+        /*
+        for (int i = 0; i < this.data.length; i++) {
+            if (this.get(i) == o) {
+                return true;
+            }
+        }
+         */
+
+        //iterator
+        Iterator<E> lit = this.iterator();
+        while (lit.hasNext()) {
+            if (lit.next() == o) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Clear the arraylist
+     */
+    public void clear() {
+        Iterator<E> lit = this.iterator();
+        while (lit.hasNext()) {
+            lit.next();
+            lit.remove();
+        }
     }
 }
