@@ -35,13 +35,14 @@ public class palindNum {
             return false;
         }
 
-        //dump to char array, and walk from front and back to mid checking equality
+        //dump to char array, and find mid
         char[] xArr = String.valueOf(x).toCharArray();
 
         int h = 0; //head
         int t = xArr.length - 1; //tail
         int mid = xArr.length / 2;
 
+        //walk from front and back to mid checking equality
         for (int i = 0; i < mid; i++) {
             if (xArr[h++] != xArr[t--]) {
                 return false;
