@@ -3,7 +3,7 @@ package main.gtgbook.positionallist;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class LinkedPositionalList<E> implements PositionalList<E> {
+public class LinkedPositionalList<E> implements PositionalList<E>, Cloneable {
 
     /*Nested Node class*/
     private static class Node<E> implements Position<E> {
@@ -19,7 +19,7 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
 
         @Override
         public E getElement() throws IllegalStateException {
-            if (next == null) {
+            if (this.next == null) {
                 throw new IllegalStateException("Position no longer valid");
             }
             return this.element;
@@ -98,7 +98,6 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
 
     /*Nested ElementIterator class - for iterating through elements*/
     private class ElementIterator implements Iterator<E> {
-
         Iterator<Position<E>> posItr = new PositionIterator();
 
         @Override
@@ -214,7 +213,70 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
         return removed;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        //null test
+        if (o == null) {
+            return false;
+        }
+
+        //type test and cast
+        if (this.getClass() != o.getClass()) {
+            return false;
+        }
+        LinkedPositionalList<?> other = (LinkedPositionalList<?>) o;
+
+        //size test
+        if (this.size() != other.size()) {
+            return false;
+        }
+
+        //walk and element test
+        Node<?> walkerA = this.header;
+        Node<?> walkerB = other.header;
+
+        while (walkerA != null) {
+            if (!walkerA.getElement().equals(walkerB.getElement())) {
+                return false;
+            }
+
+            walkerA = walkerA.getNext();
+            walkerB = walkerB.getNext();
+        }
+
+        return true;
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    protected LinkedPositionalList<E> clone() throws CloneNotSupportedException {
+        LinkedPositionalList<E> clone = (LinkedPositionalList<E>) super.clone();
+
+        if (this.size() > 0) {
+            //FIXME not working
+            //create header and trailer nodes and link up
+            clone.header = new Node<>(this.header.getElement(), null, null);
+            clone.trailer = new Node<>(this.trailer.getElement(), clone.header, null);
+            clone.header.setNext(clone.trailer);
+
+            //a walker and tracker
+            Node<E> walker = this.header.getNext();
+            Node<E> cloneTrailer = clone.header;
+
+            //walk, creating new nodes and linking to trailer
+            while (walker != null) {
+                Node<E> newest = new Node<>(walker.getElement(), cloneTrailer, null);
+                cloneTrailer.setNext(newest);
+                cloneTrailer = newest;
+                walker = walker.getNext();
+            }
+        }
+
+        return clone;
+    }
+
     /*Helpers*/
+
     /**
      * Validate the position and return its node - this ensures Node class is encapsulated behind a Position
      *

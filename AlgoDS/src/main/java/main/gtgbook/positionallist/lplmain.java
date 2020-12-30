@@ -89,5 +89,15 @@ public class lplmain {
         insertionSort(l2);
         System.out.println("\n" + l2.first().getElement());
         System.out.println(l2.last().getElement());
+
+        /*clone and equals*/
+        try {
+            LinkedPositionalList<Integer> cloned = l2.clone();
+            System.out.println("\n" + cloned.first().getElement());
+            System.out.println(cloned.last().getElement());
+            System.out.println("Cloned equals?: " + l2.equals(cloned));
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
     }
 }
