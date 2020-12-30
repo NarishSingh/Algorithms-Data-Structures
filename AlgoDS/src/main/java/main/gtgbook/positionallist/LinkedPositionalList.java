@@ -232,16 +232,13 @@ public class LinkedPositionalList<E> implements PositionalList<E>, Cloneable {
         }
 
         //walk and element test
-        Node<?> walkerA = this.header;
-        Node<?> walkerB = other.header;
+        Iterator<?> walkerA = this.iterator();
+        Iterator<?> walkerB = other.iterator();
 
-        while (walkerA != null) {
-            if (!walkerA.getElement().equals(walkerB.getElement())) {
+        while (walkerA.hasNext()) {
+            if (!walkerA.next().equals(walkerB.next())) {
                 return false;
             }
-
-            walkerA = walkerA.getNext();
-            walkerB = walkerB.getNext();
         }
 
         return true;
@@ -253,22 +250,24 @@ public class LinkedPositionalList<E> implements PositionalList<E>, Cloneable {
         LinkedPositionalList<E> clone = (LinkedPositionalList<E>) super.clone();
 
         if (this.size() > 0) {
-            //FIXME not working
             //create header and trailer nodes and link up
-            clone.header = new Node<>(this.header.getElement(), null, null);
-            clone.trailer = new Node<>(this.trailer.getElement(), clone.header, null);
+            clone.header = new Node<>(null, null, null);
+            clone.trailer = new Node<>(null, clone.header, null);
             clone.header.setNext(clone.trailer);
 
             //a walker and tracker
-            Node<E> walker = this.header.getNext();
-            Node<E> cloneTrailer = clone.header;
+            Iterator<E> walker = this.iterator();
+            Node<E> tracker = clone.header;
 
             //walk, creating new nodes and linking to trailer
-            while (walker != null) {
-                Node<E> newest = new Node<>(walker.getElement(), cloneTrailer, null);
-                cloneTrailer.setNext(newest);
-                cloneTrailer = newest;
-                walker = walker.getNext();
+            while (walker.hasNext()) {
+                //connect newest to trailer since its added at end
+                Node<E> newest = new Node<>(walker.next(), tracker, this.trailer);
+
+                //formally link the list nodes to newest and move tracker forward
+                tracker.setNext(newest);
+                clone.trailer.setPrev(newest);
+                tracker = newest;
             }
         }
 
