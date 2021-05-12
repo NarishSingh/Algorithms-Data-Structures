@@ -58,6 +58,14 @@ public interface Tree<E> extends Iterable<E> {
     boolean isExternal(Position<E> p) throws IllegalArgumentException;
 
     /**
+     * Position of element is a root if it has no parents
+     *
+     * @return {boolean} true if element has no parents and is a root, false otherwise
+     * @throws IllegalArgumentException if an invalid position is provided
+     */
+    boolean isRoot(Position<E> p) throws IllegalArgumentException;
+
+    /**
      * Return number of positions/elements of tree
      *
      * @return {int} number of elements in tree
