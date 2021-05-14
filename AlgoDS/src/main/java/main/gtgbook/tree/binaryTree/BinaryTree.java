@@ -4,7 +4,6 @@ import main.gtgbook.positionallist.Position;
 import main.gtgbook.tree.Tree;
 
 public interface BinaryTree<E> extends Tree<E> {
-
     /**
      * Get the left child of binary tree
      *

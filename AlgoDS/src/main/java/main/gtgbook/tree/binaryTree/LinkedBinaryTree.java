@@ -2,10 +2,7 @@ package main.gtgbook.tree.binaryTree;
 
 import main.gtgbook.positionallist.Position;
 
-import java.util.Iterator;
-
 public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
-
     /*NESTED NODE CLASS*/
     protected static class Node<E> implements Position<E> {
         private E element;
@@ -80,7 +77,7 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
         }
 
         Node<E> node = (Node<E>) p; //safe cast
-        if (node.getParent() == null) {
+        if (node.getParent() == node) {
             throw new IllegalArgumentException("p is no longer in tree");
         }
 
@@ -117,16 +114,6 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
         return node.getRight();
     }
 
-    @Override
-    public Iterator<E> iterator() {
-        return null;
-    }
-
-    @Override
-    public Iterable<Position<E>> positions() {
-        return null;
-    }
-
     //Update methods
 
     /**
@@ -141,8 +128,8 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
             throw new IllegalStateException("Tree is not empty");
         }
 
-        root = createNode(e, null, null, null);
-        size = 1;
+        this.root = createNode(e, null, null, null);
+        this.size = 1;
         return root;
     }
 
@@ -200,20 +187,87 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
      */
     public E set(Position<E> p, E e) throws IllegalArgumentException {
         Node<E> node = validate(p);
-        E temp = node.getElement();
+        E replaced = node.getElement();
         node.setElement(e);
-        return temp;
+        return replaced;
     }
 
     /**
      * Attaches two trees as left and right subtrees of an external position
      *
      * @param p  {Position} the external Position to receive the new subtrees
-     * @param t1 {LinkedBinaryTree}
-     * @param t2 {LinkedBinaryTree}
-     * @throws IllegalArgumentException
+     * @param t1 {LinkedBinaryTree} a valid subtree
+     * @param t2 {LinkedBinaryTree} a valid subtree
+     * @throws IllegalArgumentException if p is not a leaf
      */
     public void attach(Position<E> p, LinkedBinaryTree<E> t1, LinkedBinaryTree<E> t2) throws IllegalArgumentException {
+        Node<E> node = validate(p);
+        if (isInternal(p)) {
+            throw new IllegalArgumentException("Position p is not a leaf");
+        }
 
+        this.size += t1.size() + t2.size();
+
+        if (!t1.isEmpty()) {
+            t1.root.setParent(node);
+            node.setLeft(t1.root);
+
+            //t1 is now attached, prep for garbage collection
+            t1.root = null;
+            t1.size = 0;
+        }
+
+        if (!t2.isEmpty()) {
+            t2.root.setParent(node);
+            node.setRight(t2.root);
+
+            //t2 is now attached, prep for garbage collection
+            t2.root = null;
+            t2.size = 0;
+        }
+    }
+
+    /**
+     * Removes node at position, replace with child if any
+     *
+     * @param p {Position} a valid position in tree
+     * @return {E} the removed element
+     * @throws IllegalArgumentException if position has 2 elements
+     */
+    public E remove(Position<E> p) throws IllegalArgumentException {
+        Node<E> node = validate(p);
+        if (numChildren(p) == 2) {
+            throw new IllegalArgumentException("Position p has 2 children");
+        }
+
+        //get child and attach it to node's parent in the place of the node
+        Node<E> child = (node.getLeft() != null ? node.getLeft() : node.getRight());
+        if (child != null) {
+            child.setParent(node.getParent());
+        }
+
+        //if removing root, set that child as new root
+        if (node == root) {
+            root = child;
+        } else {
+            //else, attach parent to new child
+            Node<E> parent = node.getParent();
+            if (node == parent.getLeft()) {
+                parent.setLeft(child);
+            } else {
+                parent.setRight(child);
+            }
+        }
+
+        this.size--;
+
+        //help garbage collection by nulling
+        E removed = node.getElement();
+        node.setElement(null);
+        node.setLeft(null);
+        node.setRight(null);
+        node.setParent(null);
+
+        return removed;
     }
 }
