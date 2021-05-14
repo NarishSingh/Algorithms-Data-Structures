@@ -76,12 +76,12 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
      */
     protected Node<E> validate(Position<E> p) throws IllegalArgumentException {
         if (!(p instanceof Node)) {
-            throw new IllegalArgumentException("Not valid position type")
+            throw new IllegalArgumentException("Not valid position type");
         }
 
         Node<E> node = (Node<E>) p; //safe cast
         if (node.getParent() == null) {
-            throw new IllegalArgumentException("p is no longer in tree")
+            throw new IllegalArgumentException("p is no longer in tree");
         }
 
         return node;
@@ -188,5 +188,32 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
         this.size++;
 
         return child;
+    }
+
+    /**
+     * Replaces element at position
+     *
+     * @param p {Position} position to be updated
+     * @param e {E} new element to update
+     * @return {E} returns the replaced element
+     * @throws IllegalArgumentException if position fails validation
+     */
+    public E set(Position<E> p, E e) throws IllegalArgumentException {
+        Node<E> node = validate(p);
+        E temp = node.getElement();
+        node.setElement(e);
+        return temp;
+    }
+
+    /**
+     * Attaches two trees as left and right subtrees of an external position
+     *
+     * @param p  {Position} the external Position to receive the new subtrees
+     * @param t1 {LinkedBinaryTree}
+     * @param t2 {LinkedBinaryTree}
+     * @throws IllegalArgumentException
+     */
+    public void attach(Position<E> p, LinkedBinaryTree<E> t1, LinkedBinaryTree<E> t2) throws IllegalArgumentException {
+
     }
 }
