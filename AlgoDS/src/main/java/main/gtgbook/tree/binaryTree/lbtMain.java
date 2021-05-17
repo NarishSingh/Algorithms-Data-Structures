@@ -110,5 +110,10 @@ public class lbtMain {
         //remove
         System.out.println("\nRemove: " + numLbt.remove(deepestLeaf));
         System.out.println("Full depth after removal: " + numLbt.depth(numLbt.left(rightLeafLvl3)));
+
+        //traversal
+        Iterable<Position<Integer>> positionIterable = numLbt.positions(); //uses inorder traversal
+        System.out.println("\nAll positions, traversed: ");
+        positionIterable.forEach(p -> System.out.print(p.getElement() + " "));
     }
 }

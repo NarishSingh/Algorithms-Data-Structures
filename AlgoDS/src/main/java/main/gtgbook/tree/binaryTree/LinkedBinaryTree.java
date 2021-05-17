@@ -2,8 +2,6 @@ package main.gtgbook.tree.binaryTree;
 
 import main.gtgbook.positionallist.Position;
 
-import java.util.Iterator;
-
 public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
     /*NESTED NODE CLASS*/
     protected static class Node<E> implements Position<E> {
