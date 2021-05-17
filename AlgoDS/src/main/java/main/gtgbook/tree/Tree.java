@@ -4,7 +4,7 @@ import main.gtgbook.positionallist.Position;
 
 import java.util.Iterator;
 
-public interface Tree<E> /*extends Iterable<E>*/ {
+public interface Tree<E> extends Iterable<E> {
     /**
      * Get the root of tree - topmost element
      *
@@ -79,19 +79,17 @@ public interface Tree<E> /*extends Iterable<E>*/ {
      */
     boolean isEmpty();
 
-
-    //TODO these will be implemented later in traversal section, uncomment the extends at top of file also^
     /**
      * Makes tree iterable
      *
      * @return {Iterator} an iterator for all elements in tree
      */
-//    Iterator<E> iterator();
+    Iterator<E> iterator();
 
     /**
      * Get a collection of all positions in tree
      *
      * @return {Iterable} an iterable collection of all positions
      */
-//    Iterable<Position<E>> positions();
+    Iterable<Position<E>> positions();
 }
