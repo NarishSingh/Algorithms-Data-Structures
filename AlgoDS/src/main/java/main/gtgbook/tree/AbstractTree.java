@@ -1,5 +1,7 @@
 package main.gtgbook.tree;
 
+import main.gtgbook.fifoqueue.LinkedQueue;
+import main.gtgbook.fifoqueue.Queue;
 import main.gtgbook.positionallist.Position;
 
 import java.util.ArrayList;
@@ -109,13 +111,43 @@ public abstract class AbstractTree<E> implements Tree<E> {
     /**
      * Postorder traversal - visit all subtrees recursively -> visit root
      *
-     * @return an iterable of all positions in tree
+     * @return {Iterable} an iterable of all positions in tree
      */
     public Iterable<Position<E>> postorder() {
         List<Position<E>> snapshot = new ArrayList<>();
         if (!isEmpty()) {
             postorderSubtree(root(), snapshot);
         }
+        return snapshot;
+    }
+
+    /*BREADTH FIRST*/
+
+    /**
+     * Breadth first traversal - uses a queue with its FIFO capabilities to visit all positions at a given depth before going a level down
+     *
+     * @return {Iterable} an iterable of all positions in tree
+     */
+    public Iterable<Position<E>> breadthfirst() {
+        List<Position<E>> snapshot = new ArrayList<>();
+
+        if (!isEmpty()) {
+            Queue<Position<E>> fringe = new LinkedQueue<>();
+
+            //start at root
+            fringe.enqueue(root());
+            while (!fringe.isEmpty()) {
+                //remove from front, report position
+                Position<E> p = fringe.dequeue();
+                snapshot.add(p);
+
+                //add children to back
+                for (Position<E> c : children(p)) {
+                    fringe.enqueue(c);
+                }
+            }
+        }
+
         return snapshot;
     }
 

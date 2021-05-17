@@ -52,4 +52,42 @@ public abstract class AbstractBinaryTree<E> extends AbstractTree<E> implements B
 
         return snapshot;
     }
+
+    /*INORDER TRAVERSAL - only applicable to BT's as it relies on its structure*/
+
+    /**
+     * Add the positions of the left and right subtrees of a root
+     *
+     * @param p        {Position} root
+     * @param snapshot {List} list of all positions
+     */
+    private void inorderSubtree(Position<E> p, List<Position<E>> snapshot) {
+        if (left(p) != null) {
+            inorderSubtree(left(p), snapshot);
+        }
+
+        snapshot.add(p);
+
+        if (right(p) != null) {
+            inorderSubtree(right(p), snapshot);
+        }
+    }
+
+    /**
+     * Inorder traversal - visit nodes of left subtree -> visit nodes of right subtree of root
+     *
+     * @return {Iterable} an iterable of all positions from left to right of root
+     */
+    public Iterable<Position<E>> inorder() {
+        List<Position<E>> snapshot = new ArrayList<>();
+        if (!isEmpty()) {
+            inorderSubtree(root(), snapshot);
+        }
+        return snapshot;
+    }
+
+    @Override
+    public Iterable<Position<E>> positions() {
+        return inorder(); //use inorder traversal as default
+    }
 }
