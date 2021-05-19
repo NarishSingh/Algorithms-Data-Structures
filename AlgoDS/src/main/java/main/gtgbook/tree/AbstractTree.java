@@ -151,7 +151,25 @@ public abstract class AbstractTree<E> implements Tree<E> {
         return snapshot;
     }
 
-    /*NESTED ELEMENT ITERATOR CLASS*/
+    /*EULER TOUR*/
+    public Iterable<Position<E>> eulerTour(Tree<E> t, Position<E> p) {
+        List<Position<E>> positions = new ArrayList<>();
+
+        if (!isEmpty()) {
+            //pre-visit -> pass down to the left
+
+            //recursively visit the children
+            for (Position<E> c : t.children(p)) {
+                eulerTour(t, c);
+            }
+
+            //post-visit -> pass up to the right
+        }
+
+        return positions;
+    }
+
+    /*-------NESTED ELEMENT ITERATOR CLASS-------*/
 
     /**
      * Adapts the iteration produced in positions() to give the elements
