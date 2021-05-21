@@ -10,7 +10,7 @@ public class plusminosratios {
 
         for (int i : arr) {
             if (i != 0) {
-                switch (Integer.signum(i)){
+                switch (Integer.signum(i)) {
                     case -1:
                         negCt++;
                         break;
