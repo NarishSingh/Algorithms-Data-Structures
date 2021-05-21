@@ -40,10 +40,12 @@ public class subarrayDiv {
         List<Integer> choc2 = List.of(1, 2, 1, 3, 2);
         List<Integer> choc3 = List.of(1, 1, 1, 1, 1, 1);
         List<Integer> choc4 = List.of(4);
+        List<Integer> choc5 = List.of(2, 2, 2, 1, 3, 2, 2, 3, 3, 1, 4, 1, 3, 2, 2, 1, 2, 2, 4, 2, 2, 3, 5, 3, 4, 3, 2, 1, 4, 5, 4);
 
         System.out.println(birthdayChocolate(choc1, 4, 2));
         System.out.println(birthdayChocolate(choc2, 3, 2));
         System.out.println(birthdayChocolate(choc3, 3, 2));
         System.out.println(birthdayChocolate(choc4, 4, 1));
+        System.out.println(birthdayChocolate(choc5, 10, 4)); // FIXME: 5/21/2021 expected 7 , getting 9
     }
 }
