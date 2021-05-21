@@ -8,19 +8,15 @@ public class staircase {
         //1-n inclusive = stair levels
         for (int i = 1; i <= n; i++) {
             //spaces = n - i
-            for (int j = 0; j < n - i; j++) {
-                scBuild.append(" ");
-            }
+            scBuild.append(" ".repeat(Math.max(0, n - i)));
 
             //stair/# = i
-            for (int j = 0; j < i; j++) {
-                scBuild.append("#");
-            }
+            scBuild.append("#".repeat(Math.max(0, i)));
 
             scBuild.append("\n");
         }
 
-        System.out.print(scBuild.toString());
+        System.out.print(scBuild);
     }
 
     public static void main(String[] args) {
