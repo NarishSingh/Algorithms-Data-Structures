@@ -43,5 +43,6 @@ public class dayOfTheProgrammer {
         System.out.println(dayOfProgrammer(2016));
         System.out.println(dayOfProgrammer(1800));
         System.out.println(dayOfProgrammer(1916)); // FIXME: 5/24/2021 I don't get why this test is failing
+        System.out.println(dayOfProgrammer(1872)); // FIXME: 5/24/2021 I don't get why this test is failing
     }
 }
