@@ -14,17 +14,6 @@ public class billDivision {
      * @param b    what Anna was charged
      */
     public static void bonAppetit(List<Integer> bill, int k, int b) {
-        /*
-        fails for a list of 10k inputs?
-        int annaEats = bill.stream()
-                .filter(n -> !n.equals(bill.get(k)))
-                .mapToInt(Integer::intValue)
-                .sum();
-        annaEats /= 2;
-
-        System.out.println(annaEats == b ? "Bon Appetit" : b - annaEats);
-         */
-
         int[] eaten = bill.stream()
                 .mapToInt(Integer::intValue)
                 .toArray();
