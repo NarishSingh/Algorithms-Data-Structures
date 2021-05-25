@@ -1,6 +1,13 @@
 /*
 Generic singly linked list implementation
 includes a Node nested class
+
+5/25 notes from workshop on linked lists
+Linear structures where each element is stored independently in mem -> use a pointer to the next node
+Great for mem management, deleting data is easier as we just change a pointer, nothing has to shift around
+Compared to array, only seeking at index is worse at O(n) vs O(1)
+Used -> inserting after items, inserting at beginning or middle, or for multiple inserts are better than arrays
+Head = has no inbound next pointer, Tail = has no outbound pointer/next points to null
  */
 package main.gtgbook.singlylinkedlist;
 

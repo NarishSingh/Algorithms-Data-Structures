@@ -6,6 +6,7 @@ package main.gtgbook.circularlinkedlist;
 public class CircularLinkedList<E> implements Cloneable {
 
     /*Node nested class*/
+
     /**
      * Nodes for the list
      *
@@ -43,6 +44,7 @@ public class CircularLinkedList<E> implements Cloneable {
     }
 
     //access
+
     /**
      * Get size of list
      *
@@ -88,6 +90,7 @@ public class CircularLinkedList<E> implements Cloneable {
     }
 
     //update
+
     /**
      * Move first element to the back of the list
      */
@@ -107,12 +110,14 @@ public class CircularLinkedList<E> implements Cloneable {
             tail = new Node<>(e, null); //if list was empty, new node will be only elem
             this.tail.setNext(tail); //link to itself circularly
         } else {
-            //link tail to newly created node, since circuarly connected
+            //link tail to newly created node, since circularly connected
             tail.setNext(new Node<>(e, tail.getNext()));
 
-            //revision from R3.7
-//            Node<E> newest = new Node<>(e, tail.getNext());
-//            tail.setNext(newest);
+            /*
+            revision from R3.7
+            Node<E> newest = new Node<>(e, tail.getNext());
+            tail.setNext(newest);
+             */
         }
 
         size++;
@@ -170,8 +175,7 @@ public class CircularLinkedList<E> implements Cloneable {
             return false;
         }
 
-        //walk and test
-        //do-while to force walker off tail, then check when walker revisits tail to break
+        //walk and test -> do-while to force walker off tail, then check when walker revisits tail to break
         Node<?> walkerA = this.tail;
         Node<?> walkerB = other.tail;
 
