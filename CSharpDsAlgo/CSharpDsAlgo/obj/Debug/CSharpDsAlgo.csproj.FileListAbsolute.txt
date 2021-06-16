@@ -1,0 +1,6 @@
+C:\Users\naris\Documents\Work\TECHHIRE\REPOSITORY\Algorithms-Data-Structures\CSharpDsAlgo\CSharpDsAlgo\bin\Debug\CSharpDsAlgo.exe
+C:\Users\naris\Documents\Work\TECHHIRE\REPOSITORY\Algorithms-Data-Structures\CSharpDsAlgo\CSharpDsAlgo\bin\Debug\CSharpDsAlgo.pdb
+C:\Users\naris\Documents\Work\TECHHIRE\REPOSITORY\Algorithms-Data-Structures\CSharpDsAlgo\CSharpDsAlgo\obj\Debug\CSharpDsAlgo.csprojAssemblyReference.cache
+C:\Users\naris\Documents\Work\TECHHIRE\REPOSITORY\Algorithms-Data-Structures\CSharpDsAlgo\CSharpDsAlgo\obj\Debug\CSharpDsAlgo.csproj.CoreCompileInputs.cache
+C:\Users\naris\Documents\Work\TECHHIRE\REPOSITORY\Algorithms-Data-Structures\CSharpDsAlgo\CSharpDsAlgo\obj\Debug\CSharpDsAlgo.exe
+C:\Users\naris\Documents\Work\TECHHIRE\REPOSITORY\Algorithms-Data-Structures\CSharpDsAlgo\CSharpDsAlgo\obj\Debug\CSharpDsAlgo.pdb
