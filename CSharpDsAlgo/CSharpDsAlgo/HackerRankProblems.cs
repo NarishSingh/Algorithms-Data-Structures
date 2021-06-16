@@ -38,6 +38,15 @@ namespace CSharpDsAlgo
             Console.WriteLine(Birthday(new List<int> {1, 1, 1, 1, 1, 1}, 3, 2));
             Console.WriteLine(Birthday(new List<int> {4}, 4, 1));
             Console.WriteLine("\n");
+
+            //Divisible Sum Pairs
+            Console.WriteLine(DivisibleSumPairs(6, 5, new List<int> {1, 2, 3, 4, 5, 6}));
+            Console.WriteLine(DivisibleSumPairs(6, 3, new List<int> {1, 3, 2, 6, 1, 2}));
+            Console.WriteLine("\n");
+
+            //Sock Merchant
+            Console.WriteLine(SockMerchant(9, new List<int> {10, 20, 20, 10, 10, 30, 50, 10, 20}));
+            Console.WriteLine("\n");
         }
 
         /// <summary>
@@ -122,6 +131,51 @@ namespace CSharpDsAlgo
             }
 
             return divCt;
+        }
+
+        /// <summary>
+        /// Given a list, find pairs (i,j) where i,j and the pair is divisible by k 
+        /// </summary>
+        /// <param name="n">length of list</param>
+        /// <param name="k">divisor</param>
+        /// <param name="ar">list of ints</param>
+        /// <returns>int for # of pairs</returns>
+        private static int DivisibleSumPairs(int n, int k, List<int> ar)
+        {
+            int pairs = 0;
+
+            for (int i = 0; i < ar.Count; i++)
+            {
+                for (int j = i + 1; j < ar.Count; j++)
+                {
+                    if (i < j && (ar[i] + ar[j]) % k == 0)
+                    {
+                        pairs++;
+                    }
+                }
+            }
+
+            return pairs;
+        }
+
+        /// <summary>
+        /// Find pairs of socks where the int in list represents sock color
+        /// </summary>
+        /// <param name="n">count of list</param>
+        /// <param name="ar">sock color list</param>
+        /// <returns>int for # of pairs</returns>
+        private static int SockMerchant(int n, List<int> ar)
+        {
+            int pairs = 0;
+
+            while (ar.Count > 0)
+            {
+                //RemoveAll returns number removed, add removed / 2 to pairs
+                int toRemove = ar[0];
+                pairs += ar.RemoveAll(num => num == toRemove) / 2; //int division forces truncation
+            }
+
+            return pairs;
         }
     }
 }
