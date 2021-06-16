@@ -47,6 +47,18 @@ namespace CSharpDsAlgo
             //Sock Merchant
             Console.WriteLine(SockMerchant(9, new List<int> {10, 20, 20, 10, 10, 30, 50, 10, 20}));
             Console.WriteLine("\n");
+
+            //Angry Professor
+            Console.WriteLine(AngryProfessor(3, new List<int> {-1, -3, 4, 2}));
+            Console.WriteLine(AngryProfessor(2, new List<int> {0, -1, 2, 1}));
+            Console.WriteLine("\n");
+
+            //Circular Array Rotation
+            Console.WriteLine(string.Join(",",
+                CircularArrayRotation(new List<int> {3, 4, 5}, 2, new List<int> {1, 2})));
+            Console.WriteLine(string.Join(",",
+                CircularArrayRotation(new List<int> {1, 2, 3}, 2, new List<int> {0, 1, 2})));
+            Console.WriteLine("\n");
         }
 
         /// <summary>
@@ -176,6 +188,37 @@ namespace CSharpDsAlgo
             }
 
             return pairs;
+        }
+
+        /// <summary>
+        /// Determine if the prof will cancel class, in the case that less than k students arrive on time
+        /// </summary>
+        /// <param name="k">int for threshold</param>
+        /// <param name="a">student arrival times, any positive int indicates lateness</param>
+        /// <returns>"YES" if class cancelled, "NO" if proceeds</returns>
+        private static string AngryProfessor(int k, List<int> a)
+        {
+            return a.Count(s => s <= 0) >= k ? "NO" : "YES"; //LINQ to filter and sum # of timely students
+        }
+
+        /// <summary>
+        /// Perform circular rotations on the list, then report the the indices specified
+        /// </summary>
+        /// <param name="a">list of ints</param>
+        /// <param name="k">int for # of circular rotations to perform</param>
+        /// <param name="queries">list of indices to report</param>
+        /// <returns>list of values at the indices</returns>
+        private static List<int> CircularArrayRotation(List<int> a, int k, List<int> queries)
+        {
+            for (int i = 0; i < k; i++)
+            {
+                //store last element, pop off end, then push to front
+                int temp = a[a.Count - 1];
+                a.RemoveAt(a.Count - 1);
+                a.Insert(0, temp);
+            }
+
+            return queries.Select(i => a[i]).ToList();
         }
     }
 }
