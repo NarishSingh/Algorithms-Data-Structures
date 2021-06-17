@@ -280,34 +280,12 @@ namespace CSharpDsAlgo
         /// <returns>long for the # of a's</returns>
         private static long RepeatedString(string s, long n)
         {
-            //todo failing on larger tests
-            //edges
-            if (s.Length == 1 && s == "a")
-            {
-                return n;
-            }
+            long rep = n / s.Length; //long div to find dividend
+            long iToTrunc = n % s.Length; //modulo to find how much is left after full repetitions
+            string sTrunc = s.Remove(Convert.ToInt32(iToTrunc));
 
-            if (s.Length == 1 && s != "a")
-            {
-                return 0;
-            }
-
-            /*build string in range*/
-            long repetitions = n / s.Length;
-            long remainingLetters = n % s.Length;
-            string remainder = s.Remove(Convert.ToInt32(remainingLetters));
-
-            StringBuilder sInRange = new StringBuilder("");
-            for (int i = 0; i < repetitions; i++)
-            {
-                sInRange.Append(s);
-            }
-
-            sInRange.Append(remainder);
-
-            //LINQ to find a's
-            return sInRange.ToString()
-                .Count(c => c == 'a');
+            //count a's in original string, * the # of repetitions + the a's of the truncated string
+            return s.Count(c => c == 'a') * rep + sTrunc.Count(c => c == 'a');
         }
     }
 }
