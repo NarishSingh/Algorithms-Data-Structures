@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
 
 namespace CSharpDsAlgo
 {
@@ -65,6 +67,12 @@ namespace CSharpDsAlgo
             Console.WriteLine(SaveThePrisoner(5, 2, 2));
             Console.WriteLine(SaveThePrisoner(7, 19, 2));
             Console.WriteLine(SaveThePrisoner(3, 7, 3));
+            Console.WriteLine("\n");
+
+            //Repeated String
+            Console.WriteLine(RepeatedString("aba", 10));
+            Console.WriteLine(RepeatedString("a", 1000000000000));
+            Console.WriteLine(RepeatedString("x", 970770));
             Console.WriteLine("\n");
         }
 
@@ -259,9 +267,47 @@ namespace CSharpDsAlgo
             // Console.WriteLine(string.Join(",", distr));
 
             return distr[distr.Length - 1];
-            
+
             //return ((m - 1) + (s - 1)) % n + 1; is the right answer bc they throw you large numbers
             //s+m and %n to return to 0, +/-1 to offset modular math starting at zero
+        }
+
+        /// <summary>
+        /// Assume an infinite string of s repeated continually, find the number of 'a' that occur in range n
+        /// </summary>
+        /// <param name="s">substring that is repeated</param>
+        /// <param name="n">long for range to search in</param>
+        /// <returns>long for the # of a's</returns>
+        private static long RepeatedString(string s, long n)
+        {
+            //todo failing on larger tests
+            //edges
+            if (s.Length == 1 && s == "a")
+            {
+                return n;
+            }
+
+            if (s.Length == 1 && s != "a")
+            {
+                return 0;
+            }
+
+            /*build string in range*/
+            long repetitions = n / s.Length;
+            long remainingLetters = n % s.Length;
+            string remainder = s.Remove(Convert.ToInt32(remainingLetters));
+
+            StringBuilder sInRange = new StringBuilder("");
+            for (int i = 0; i < repetitions; i++)
+            {
+                sInRange.Append(s);
+            }
+
+            sInRange.Append(remainder);
+
+            //LINQ to find a's
+            return sInRange.ToString()
+                .Count(c => c == 'a');
         }
     }
 }
