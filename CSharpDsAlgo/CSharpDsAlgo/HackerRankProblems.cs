@@ -59,6 +59,13 @@ namespace CSharpDsAlgo
             Console.WriteLine(string.Join(",",
                 CircularArrayRotation(new List<int> {1, 2, 3}, 2, new List<int> {0, 1, 2})));
             Console.WriteLine("\n");
+
+            //Save the prisoner
+            Console.WriteLine(SaveThePrisoner(5, 2, 1));
+            Console.WriteLine(SaveThePrisoner(5, 2, 2));
+            Console.WriteLine(SaveThePrisoner(7, 19, 2));
+            Console.WriteLine(SaveThePrisoner(3, 7, 3));
+            Console.WriteLine("\n");
         }
 
         /// <summary>
@@ -219,6 +226,42 @@ namespace CSharpDsAlgo
             }
 
             return queries.Select(i => a[i]).ToList();
+        }
+
+        /// <summary>
+        /// Prisoners are seated around a circular table, and passed out a number of candies starting from a certain
+        /// seat. Determine the last recipient
+        /// </summary>
+        /// <param name="n">int for # of prisoners</param>
+        /// <param name="m">int for # of candies</param>
+        /// <param name="s">int for the prisoner to begin from</param>
+        /// <returns>int for the prisoner to get the last candy</returns>
+        private static int SaveThePrisoner(int n, int m, int s)
+        {
+            int[] distr = new int[m];
+
+            //fill seating arr
+            for (int i = 0; i < m; i++)
+            {
+                distr[i] = s;
+
+                //restart at 1 due to circular seating, else increment s
+                if (s == n)
+                {
+                    s = 1;
+                }
+                else
+                {
+                    s++;
+                }
+            }
+
+            // Console.WriteLine(string.Join(",", distr));
+
+            return distr[distr.Length - 1];
+            
+            //return ((m - 1) + (s - 1)) % n + 1; is the right answer bc they throw you large numbers
+            //s+m and %n to return to 0, +/-1 to offset modular math starting at zero
         }
     }
 }
