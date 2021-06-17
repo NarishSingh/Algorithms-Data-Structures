@@ -74,6 +74,13 @@ namespace CSharpDsAlgo
             Console.WriteLine(RepeatedString("a", 1000000000000));
             Console.WriteLine(RepeatedString("x", 970770));
             Console.WriteLine("\n");
+
+            //Jumping the clouds
+            Console.WriteLine(jumpingOnClouds(new List<int> {0, 1, 0, 0, 0, 1, 0}));
+            Console.WriteLine(jumpingOnClouds(new List<int> {0, 0, 1, 0, 0, 1, 0}));
+            Console.WriteLine(jumpingOnClouds(new List<int> {0, 0, 0, 0, 1, 0}));
+            Console.WriteLine(jumpingOnClouds(new List<int> {0, 0, 0, 1, 0, 0}));
+            Console.WriteLine("\n");
         }
 
         /// <summary>
@@ -286,6 +293,33 @@ namespace CSharpDsAlgo
 
             //count a's in original string, * the # of repetitions + the a's of the truncated string
             return s.Count(c => c == 'a') * rep + sTrunc.Count(c => c == 'a');
+        }
+
+        /// <summary>
+        /// Determine the number of jumps to avoid the thunder clouds and complete the course
+        /// </summary>
+        /// <param name="c">list of ints, where 0 are safe, 1 are to be avoided - 1st and last will always be 0</param>
+        /// <returns>int for number of jumps to complete course</returns>
+        private static int jumpingOnClouds(List<int> c)
+        {
+            int i = 0, jumps = 0;
+
+            while (i < c.Count - 1)
+            {
+                //look ahead 2 indices, if both safe, jump 2 i's, else jump 1
+                if (i + 2 < c.Count && c[i + 2] == 0) //have to check so it doesn't hit the out of bounds exception
+                {
+                    i += 2;
+                    jumps++;
+                }
+                else if (c[i + 1] == 0)
+                {
+                    i++;
+                    jumps++;
+                }
+            }
+
+            return jumps;
         }
     }
 }
