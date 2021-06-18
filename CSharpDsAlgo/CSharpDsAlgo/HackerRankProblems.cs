@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
 
 namespace CSharpDsAlgo
 {
@@ -80,6 +78,11 @@ namespace CSharpDsAlgo
             Console.WriteLine(jumpingOnClouds(new List<int> {0, 0, 1, 0, 0, 1, 0}));
             Console.WriteLine(jumpingOnClouds(new List<int> {0, 0, 0, 0, 1, 0}));
             Console.WriteLine(jumpingOnClouds(new List<int> {0, 0, 0, 1, 0, 0}));
+            Console.WriteLine("\n");
+
+            //Equalize the array
+            Console.WriteLine(EqualizeArray(new List<int> {1, 2, 2, 3}));
+            Console.WriteLine(EqualizeArray(new List<int> {3, 3, 2, 1, 3}));
             Console.WriteLine("\n");
         }
 
@@ -320,6 +323,26 @@ namespace CSharpDsAlgo
             }
 
             return jumps;
+        }
+
+        /// <summary>
+        /// Find the min number of elements to delete to leave the list with only 1 element type
+        /// </summary>
+        /// <param name="arr">list of ints</param>
+        /// <returns>min # of indices to delete</returns>
+        private static int EqualizeArray(List<int> arr)
+        {
+            //create a set of distinct numbers so we know what to get counts of
+            HashSet<int> numSet = arr.ToHashSet();
+
+            //use hash set to find counts of each num
+            List<int> numCts = new List<int>();
+            foreach (int num in numSet)
+            {
+                numCts.Add(arr.Count(n => n == num));
+            }
+
+            return arr.Count - numCts.Max(); //length - the # of max elements = the min to delete for uniform list
         }
     }
 }
