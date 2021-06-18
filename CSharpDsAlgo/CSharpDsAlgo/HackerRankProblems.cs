@@ -84,6 +84,12 @@ namespace CSharpDsAlgo
             Console.WriteLine(EqualizeArray(new List<int> {1, 2, 2, 3}));
             Console.WriteLine(EqualizeArray(new List<int> {3, 3, 2, 1, 3}));
             Console.WriteLine("\n");
+
+            //Counting valleys
+            Console.WriteLine(CountingValleys(8, "DDUUUUDD"));
+            Console.WriteLine(CountingValleys(8, "UDDDUDUU"));
+            Console.WriteLine(CountingValleys(12, "DDUUDDUDUUUD"));
+            Console.WriteLine("\n");
         }
 
         /// <summary>
@@ -342,7 +348,53 @@ namespace CSharpDsAlgo
                 numCts.Add(arr.Count(n => n == num));
             }
 
-            return arr.Count - numCts.Max(); //length - the # of max elements = the min to delete for uniform list
+            return arr.Count - numCts.Max(); //count - the # of max elements = the min to delete for uniform list
+        }
+
+        /// <summary>
+        /// Find the number of valleys encountered, which begin step down from sea level, and ending with a step up
+        /// from sea level
+        /// </summary>
+        /// <param name="steps">total number of steps in path</param>
+        /// <param name="path">string where U = +1 alt, D = -1 alt, assume start at sea level</param>
+        /// <returns>number of valleys encountered</returns>
+        private static int CountingValleys(int steps, string path)
+        {
+            List<int> pathAlts = new List<int>(); //start at sea level
+            int currentAlt = 0;
+
+            //render path as a list of alt's at a given index of string
+            foreach (char step in path)
+            {
+                if (step == 'U')
+                {
+                    pathAlts.Add(++currentAlt);
+                }
+                else
+                {
+                    pathAlts.Add(--currentAlt);
+                }
+            }
+
+            bool valleyFlag = false;
+            int valleys = 0;
+            foreach (int alt in pathAlts)
+            {
+                //if dips below 0, entered a valley
+                if (alt == -1)
+                {
+                    valleyFlag = true;
+                }
+
+                //if entered a valley, and we reach 0, we completed a valley encounter
+                if (valleyFlag && alt == 0)
+                {
+                    valleys++;
+                    valleyFlag = false;
+                }
+            }
+
+            return valleys;
         }
     }
 }
