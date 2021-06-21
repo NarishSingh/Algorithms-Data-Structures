@@ -90,6 +90,11 @@ namespace CSharpDsAlgo
             Console.WriteLine(CountingValleys(8, "UDDDUDUU"));
             Console.WriteLine(CountingValleys(12, "DDUUDDUDUUUD"));
             Console.WriteLine("\n");
+
+            //Arrays: Left Rotation
+            Console.WriteLine(string.Join(",", RotLeft(new List<int> {1, 2, 3, 4, 5}, 2)));
+            Console.WriteLine(string.Join(",", RotLeft(new List<int> {1, 2, 3, 4, 5}, 4)));
+            Console.WriteLine("\n");
         }
 
         /// <summary>
@@ -395,6 +400,25 @@ namespace CSharpDsAlgo
             }
 
             return valleys;
+        }
+
+        /// <summary>
+        /// Rotate a list to the left many times
+        /// </summary>
+        /// <param name="a">list of ints</param>
+        /// <param name="d">int for # of rotations</param>
+        /// <returns>the rotated list</returns>
+        private static List<int> RotLeft(List<int> a, int d)
+        {
+            //fails for big lists with many shifts on HR
+            for (int i = 0; i < d; i++)
+            {
+                int temp = a[0];
+                a.RemoveAt(0);
+                a = a.Append(temp).ToList();
+            }
+
+            return a;
         }
     }
 }
