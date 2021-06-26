@@ -5,7 +5,7 @@ sort the buckets
 then gather all the elements back together
 -works best on a well distributed set -> to spread out or close won't be efficient
  */
-package main.bucketsort;
+package main.sorting;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -5,7 +5,7 @@ go thru the array and determine what should be to the left/< and what should be 
 then put the pivot to the middle of those left/right determinations
 move the pivot and continue
  */
-package main.quicksort;
+package main.sorting;
 
 import java.util.Arrays;
 

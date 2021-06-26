@@ -1,7 +1,7 @@
 /*
 best of the worst sorts
  */
-package main.insertionsort;
+package main.sorting;
 
 import java.util.Arrays;
 

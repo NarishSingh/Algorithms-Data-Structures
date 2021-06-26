@@ -5,7 +5,7 @@ sort in this smaller units
 merge back into a major arr
 -uses recursion to make it work
  */
-package main.mergesort;
+package main.sorting;
 
 import java.util.Arrays;
 

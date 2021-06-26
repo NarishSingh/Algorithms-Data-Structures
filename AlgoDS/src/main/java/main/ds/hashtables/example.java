@@ -1,4 +1,4 @@
-package main.hashtables;
+package main.ds.hashtables;
 
 public class example {
     public static void main(String[] args) {

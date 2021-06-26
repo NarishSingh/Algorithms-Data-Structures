@@ -1,4 +1,4 @@
-package main.stack;
+package main.ds;
 
 public class Stack {
     private int maxSize;

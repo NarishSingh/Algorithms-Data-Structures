@@ -1,4 +1,4 @@
-package main.queue;
+package main.ds;
 
 public class Queue {
     int arr[];

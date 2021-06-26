@@ -1,4 +1,4 @@
-package main.hashtables;
+package main.ds.hashtables;
 
 /**
  * Will function like linked lists basically

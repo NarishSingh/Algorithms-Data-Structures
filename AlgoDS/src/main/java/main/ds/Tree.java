@@ -1,4 +1,4 @@
-package main.tree;
+package main.ds;
 
 public class Tree {
     private class Node {

@@ -3,7 +3,7 @@ Useful to visualize data that is non-hierarchical
 visual relationships and connections b/w non-numerical connections
 can do math operations for ex. path finding
  */
-package main.graph;
+package main.ds;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-package main.hashtables;
+package main.ds.hashtables;
 
 import java.util.ArrayList;
 

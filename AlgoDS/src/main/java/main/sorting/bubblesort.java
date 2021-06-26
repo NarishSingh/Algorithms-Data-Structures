@@ -2,7 +2,7 @@
 Very inefficient sort -> each item is compared to its neighbors, and swaps if one out of order
 large elements "bubble" up to the end of the collection
  */
-package main.bubblesort;
+package main.sorting;
 
 import java.util.Arrays;
 
