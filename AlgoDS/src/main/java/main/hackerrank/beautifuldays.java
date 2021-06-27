@@ -1,6 +1,5 @@
 package main.hackerrank;
 
-import java.util.Arrays;
 import java.util.stream.IntStream;
 
 public class beautifuldays {
@@ -8,14 +7,15 @@ public class beautifuldays {
     /**
      * Find the "reverse" of a number, ex. 12 -> 21, 120 -> 21
      *
-     * @param n num
+     * @param n any int
      * @return the corresponding semantic reverse of a number
      */
     private static int reverse(int n) {
         char[] num = String.valueOf(n).toCharArray(); //dump to arr
-        char[] reverse = new char[num.length];
+        if (num.length == 1) return n; //edge where its just one digit
 
-        //reverse iteration for num, normal for reverse
+        //reverse iteration for num, forward iteration for reverse
+        char[] reverse = new char[num.length];
         for (int i = num.length - 1, j = 0; i >= 0; i--, j++) {
             reverse[j] = num[i];
         }
@@ -24,7 +24,7 @@ public class beautifuldays {
     }
 
     /**
-     * Given a range, find the num of "beautiful days" where the abs of i-reverse(i) is even divisible by k
+     * Given a range, find the num of "beautiful days" where the abs of i-reverse(i) is divisible by k
      *
      * @param i start of range
      * @param j end of range
@@ -36,7 +36,9 @@ public class beautifuldays {
         int[] range = IntStream.rangeClosed(i, j).toArray(); //create arr within range
 
         for (int n : range) {
-            if (Math.abs(n - reverse(n)) % k == 0) bd++;
+            if (Math.abs(n - reverse(n)) % k == 0) {
+                bd++;
+            }
         }
 
         return bd;
