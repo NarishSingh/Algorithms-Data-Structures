@@ -56,8 +56,7 @@ public class ArrayStack<E> implements Stack<E>, Cloneable {
         }
 
         E removed = data[t];
-        data[t] = null;
-        t--;
+        data[t--] = null;
 
         return removed;
     }
