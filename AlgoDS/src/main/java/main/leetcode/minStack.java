@@ -82,9 +82,13 @@ public class minStack {
          * @return int for min value present
          */
         public int getMin() {
-            return Arrays.stream(data)
-                    .min()
-                    .orElse(Integer.MAX_VALUE); //will never be called on non empty stack, but needed b/c min returns Optional
+            int min = Integer.MAX_VALUE;
+            //stack length = t+1
+            for (int i = 0; i < t + 1; i++) {
+                if (data[i] < min) min = data[i];
+            }
+
+            return min;
         }
     }
 
