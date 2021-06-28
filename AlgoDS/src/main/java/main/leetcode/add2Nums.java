@@ -47,28 +47,50 @@ public class add2Nums {
         }
     }
 
-    public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        //walkers for sll
-        ListNode walkerL1 = l1;
-        ListNode walkerL2 = l2;
+    /**
+     * Insert a node at the tail of a singly linked list
+     *
+     * @param root the root node
+     * @param val  int value for appended node
+     * @return the root node with appended node attached
+     */
+    private static ListNode insertNode(ListNode root, int val) {
+        ListNode temp = new ListNode(val, null);
+        ListNode walker;
+
+        //if null sll, set head, else, traverse to tail and insert
+        if (root == null)
+            root = temp;
+        else {
+            walker = root;
+            while (walker.next != null) {
+                walker = walker.next;
+            }
+            walker.next = temp;
+        }
+
+        return root;
+    }
+
+    private static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         //string builder so we capture digits one at a time then reverse
         StringBuilder l1Str = new StringBuilder();
         StringBuilder l2Str = new StringBuilder();
 
         //traverse the sll's and get their nums -> are stored in reverse so parse after sb.reverse().toString()
-        while (walkerL1.next != null) {
-            l1Str.append(walkerL1.val);
-            walkerL1 = walkerL1.next;
+        while (l1 != null) {
+            l1Str.append(l1.val);
+            l1 = l1.next;
         }
         int num1 = Integer.parseInt(l1Str.reverse().toString());
 
-        while (walkerL2.next != null) {
-            l2Str.append(walkerL2.val);
-            walkerL2 = walkerL2.next;
+        while (l2 != null) {
+            l2Str.append(l2.val);
+            l2 = l2.next;
         }
         int num2 = Integer.parseInt(l2Str.reverse().toString());
 
-        int sum = num1 + num2; //sum
+        int sum = num1 + num2;
 
         //new sb to reverse the sum from its char array
         StringBuilder sumStr = new StringBuilder();
@@ -78,15 +100,9 @@ public class add2Nums {
         char[] sumRevArr = sumStr.reverse().toString().toCharArray();
 
         //build final list node
-        ListNode temp;
-        ListNode reversedSumSll = null; //null flag to set head
+        ListNode reversedSumSll = null; //null flag to check if head
         for (char c : sumRevArr) {
-            temp = new ListNode(Integer.parseInt(String.valueOf(c)));
-            if (reversedSumSll == null) {
-                reversedSumSll = temp;
-            } else {
-                reversedSumSll.next = temp;
-            }
+            reversedSumSll = insertNode(reversedSumSll, Integer.parseInt(String.valueOf(c)));
         }
 
         return reversedSumSll;
@@ -94,11 +110,11 @@ public class add2Nums {
 
     public static void main(String[] args) {
         ListNode case1 = addTwoNumbers(
-                new ListNode(2, new ListNode(4, new ListNode(3))),
-                new ListNode(5, new ListNode(6, new ListNode(4)))
+                new ListNode(2, new ListNode(4, new ListNode(3, null))),
+                new ListNode(5, new ListNode(6, new ListNode(4, null)))
         );
 
-        while (case1.next != null){
+        while (case1.next != null) {
             System.out.println(case1.val);
             case1 = case1.next;
         }
