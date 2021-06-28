@@ -114,7 +114,7 @@ public class add2Nums {
                 new ListNode(5, new ListNode(6, new ListNode(4, null)))
         );
 
-        while (case1.next != null) {
+        while (case1 != null) {
             System.out.println(case1.val);
             case1 = case1.next;
         }
