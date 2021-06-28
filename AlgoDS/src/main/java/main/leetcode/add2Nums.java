@@ -25,6 +25,8 @@ It is guaranteed that the list represents a number that does not have leading ze
  */
 package main.leetcode;
 
+import main.gtgbook.list.List;
+
 public class add2Nums {
 
     /**
@@ -73,6 +75,8 @@ public class add2Nums {
     }
 
     private static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        //this solution fails for massive numbers past long, doubles introduce a decimal which will break solution
+        /*
         //string builder so we capture digits one at a time then reverse
         StringBuilder l1Str = new StringBuilder();
         StringBuilder l2Str = new StringBuilder();
@@ -82,15 +86,15 @@ public class add2Nums {
             l1Str.append(l1.val);
             l1 = l1.next;
         }
-        int num1 = Integer.parseInt(l1Str.reverse().toString());
+        long num1 = Long.parseLong(l1Str.reverse().toString());
 
         while (l2 != null) {
             l2Str.append(l2.val);
             l2 = l2.next;
         }
-        int num2 = Integer.parseInt(l2Str.reverse().toString());
+        long num2 = Long.parseLong(l2Str.reverse().toString()); // FIXME: 6/28/2021 fails for 9999999991
 
-        int sum = num1 + num2;
+        long sum = num1 + num2;
 
         //new sb to reverse the sum from its char array
         StringBuilder sumStr = new StringBuilder();
@@ -106,6 +110,40 @@ public class add2Nums {
         }
 
         return reversedSumSll;
+         */
+
+        ListNode head = new ListNode(0);
+        ListNode l3 = head;
+
+        //since its in reverse order, we just have to add digits, BUT we need to carry over the 1 in case sum is >9
+        int carry = 0;
+        while (l1 != null || l2 != null) {
+            //if null, add 0
+            int l1Val = l1 != null ? l1.val : 0;
+            int l2Val = l2 != null ? l2.val : 0;
+
+            int currentSum = l1Val + l2Val + carry;
+
+            //split carry from digit
+            carry = currentSum / 10;
+            int digit = currentSum % 10;
+
+            //attach node
+            l3.next = new ListNode(digit);
+
+            //move all forward
+            if (l1 != null) l1 = l1.next;
+            if (l2 != null) l2 = l2.next;
+            l3 = l3.next;
+        }
+
+        //if last addition had a carry, need a new node
+        if (carry > 0) {
+            l3.next = new ListNode(carry);
+            l3 = l3.next;
+        }
+
+        return head.next;
     }
 
     public static void main(String[] args) {
@@ -117,6 +155,20 @@ public class add2Nums {
         while (case1 != null) {
             System.out.println(case1.val);
             case1 = case1.next;
+        }
+
+        System.out.println("\n");
+
+        ListNode case2 = addTwoNumbers(
+                new ListNode(9, null),
+                new ListNode(1, new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9,
+                        new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9,
+                                new ListNode(9, null))))))))))
+        );
+
+        while (case2 != null) {
+            System.out.println(case2.val);
+            case2 = case2.next;
         }
     }
 }
