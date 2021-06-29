@@ -1,5 +1,8 @@
 /*
 Attempt with an sll
+
+NOTE: apparently for this you can just use an ArrayList...just make sure the push and pop are lifo, best to do it from
+end of list
  */
 package main.leetcode;
 
@@ -63,6 +66,9 @@ public class minStackAttempt2 {
         }
     }
 
+    /**
+     * Additions and removals will be from the front of sll/head bc that produces o(1)
+     */
     public static class MinStack {
 
         SinglyLinkedList data;
@@ -84,7 +90,15 @@ public class minStackAttempt2 {
         }
 
         public int getMin() {
+            int min = Integer.MAX_VALUE;
+            SinglyLinkedList.Node walker = data.head;
 
+            while (walker != null){
+                if (walker.val < min) min = walker.val;
+                walker = walker.next;
+            }
+
+            return min;
         }
     }
 
