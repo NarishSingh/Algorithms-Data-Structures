@@ -36,10 +36,7 @@ At most 3 * 104 calls will be made to push, pop, top, and getMin
  */
 package main.leetcode;
 
-import java.util.Arrays;
-
 public class minStack {
-
     public static class MinStack {
         private int[] data;
         private int t; //i of top
@@ -93,6 +90,7 @@ public class minStack {
     }
 
     public static void main(String[] args) {
+        // FIXME: 6/28/2021 fails past 1000 due to arr constraint...
         MinStack test1 = new MinStack();
         test1.push(-2);
         test1.push(0);
