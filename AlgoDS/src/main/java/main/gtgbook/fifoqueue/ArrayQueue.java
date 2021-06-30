@@ -1,5 +1,6 @@
 /*
-To solve the problem of removing elements from the front, we use the array circularly -> this way the reference to the front never exceeds length
+To solve the problem of removing elements from the front, we use the array circularly -> this way the reference to the
+front never exceeds length
  */
 package main.gtgbook.fifoqueue;
 
