@@ -42,7 +42,7 @@ public class TreePreorder {
     }
 
     /**
-     * Perform a preorder traveral on tree and print values
+     * Perform a preorder traversal on tree and print values
      *
      * @param root root Node of tree
      */
@@ -69,8 +69,7 @@ public class TreePreorder {
         lvl3.left = lvl4Left;
         lvl3.right = lvl4Right;
 
-        Node lvl5 = new Node(4);
-        lvl4Left.right = lvl5;
+        lvl4Left.right = new Node(4);
 
         preOrder(root1);
     }
