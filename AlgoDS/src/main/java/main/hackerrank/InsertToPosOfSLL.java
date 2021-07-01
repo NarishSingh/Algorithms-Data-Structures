@@ -7,6 +7,7 @@ public class InsertToPosOfSLL {
 
         /**
          * THIS ONE USED BY HACKERRANK
+         *
          * @param data value at node
          */
         public SinglyLinkedListNode(int data) {
@@ -31,7 +32,8 @@ public class InsertToPosOfSLL {
         SinglyLinkedListNode walker = llist;
         SinglyLinkedListNode newNode = new SinglyLinkedListNode(data);
 
-        for (int i = 0; i < position-1; i++) walker = walker.next; //traverse to position-1 to ensure its in that place
+        //traverse to position-1 to ensure its in that place
+        for (int i = 0; i < position - 1; i++) walker = walker.next;
 
         SinglyLinkedListNode temp = walker.next; //save the Node after insertion point
         walker.next = newNode; //insert after walker
@@ -41,10 +43,11 @@ public class InsertToPosOfSLL {
     }
 
     public static void main(String[] args) {
-        SinglyLinkedListNode test = new SinglyLinkedListNode(16, new SinglyLinkedListNode(13, new SinglyLinkedListNode(7, null)));
+        SinglyLinkedListNode test = new SinglyLinkedListNode(16, new SinglyLinkedListNode(13,
+                new SinglyLinkedListNode(7, null)));
         SinglyLinkedListNode inserted = insertNodeAtPosition(test, 1, 2);
 
-        while (inserted != null){
+        while (inserted != null) {
             System.out.println(inserted.data);
             inserted = inserted.next;
         }
