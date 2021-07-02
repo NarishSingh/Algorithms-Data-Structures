@@ -24,7 +24,6 @@ package main.leetcode;
 
 import java.util.Arrays;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -34,12 +33,11 @@ public class MajorityElem {
         Map<Integer, Long> numFreq = Arrays.stream(nums).boxed()
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
 
-        long majority = (long) Math.ceil(nums.length / 2);
+        long majority = (long) Math.ceil(nums.length / 2); //long to ensure comparison w count values
 
         return numFreq.entrySet().stream()
                 .filter(entry -> entry.getValue() > majority)
-                .findFirst()
-                .orElse(null)
+                .findFirst().orElse(null)
                 .getKey();
     }
 
