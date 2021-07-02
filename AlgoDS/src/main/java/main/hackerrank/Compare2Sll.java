@@ -17,6 +17,7 @@ public class Compare2Sll {
 
     /**
      * Compare 2 sll's
+     *
      * @param head1 head of 1st sll
      * @param head2 head of 2nd sll
      * @return true if deep equality, false otherwise
@@ -26,17 +27,17 @@ public class Compare2Sll {
         SinglyLinkedListNode walker2 = head2;
 
         //start walking head1
-        while (walker1 != null){
+        while (walker1 != null) {
             if (walker1.data != walker2.data) return false;
-            if (walker1.next == null && walker2.next == null) return true; //if all equal and both can't step, lists are equal
+            if (walker1.next == null && walker2.next == null) return true; //deep equality and both can't step -> equal
 
-            //if walker1 stepped but walker2 can't step, return false
+            //if walker1 stepped but walker2 can't step -> unequal
             walker1 = walker1.next;
             if (walker2.next == null) return false;
             else walker2 = walker2.next;
         }
 
-        //at this point walker1 is null, if neither of the previous checks triggered, then walker2 must still have nodes
+        //at this point walker1 is null, if no previous checks triggered then walker2 must still have nodes -> unequal
         return false;
     }
 
