@@ -95,6 +95,11 @@ namespace CSharpDsAlgo
             Console.WriteLine(string.Join(",", RotLeft(new List<int> {1, 2, 3, 4, 5}, 2)));
             Console.WriteLine(string.Join(",", RotLeft(new List<int> {1, 2, 3, 4, 5}, 4)));
             Console.WriteLine("\n");
+
+            //Mark and Toys
+            Console.WriteLine(MaximumToys(new List<int> {1, 2, 3, 4}, 7));
+            Console.WriteLine(MaximumToys(new List<int> {1, 12, 5, 111, 200, 1000, 10}, 50));
+            Console.WriteLine("\n");
         }
 
         /// <summary>
@@ -419,6 +424,31 @@ namespace CSharpDsAlgo
             }
 
             return a;
+        }
+
+        /// <summary>
+        /// Find the max num of elements to achieve the target sum
+        /// </summary>
+        /// <param name="prices">list of ints</param>
+        /// <param name="k">target sum</param>
+        /// <returns>int for the maximum # of elements</returns>
+        private static int MaximumToys(List<int> prices, int k)
+        {
+            //sort prices from min to max
+            prices.Sort();
+            int i = 0; //incremental amount to take
+            List<int> elems = new List<int>();
+
+            //Take from list, until you find reach the target
+            while (elems.Sum() < k)
+            {
+                elems = prices.Take(++i).ToList();
+            }
+
+
+            if (elems.Sum() > k) return --i; //check if last take was too much
+
+            return i;
         }
     }
 }
