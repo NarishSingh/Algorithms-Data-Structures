@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 
 namespace CSharpDsAlgo
 {
-    public class HackerRankProblems
+    public class HRLEETProblems
     {
         public static void Main(string[] args)
         {
@@ -99,6 +100,37 @@ namespace CSharpDsAlgo
             //Mark and Toys
             Console.WriteLine(MaximumToys(new List<int> {1, 2, 3, 4}, 7));
             Console.WriteLine(MaximumToys(new List<int> {1, 12, 5, 111, 200, 1000, 10}, 50));
+            Console.WriteLine("\n");
+
+            //Reverse Int
+            Console.WriteLine(ReverseInt(123));
+            Console.WriteLine(ReverseInt(-123));
+            Console.WriteLine(ReverseInt(120));
+            Console.WriteLine(ReverseInt(0));
+            Console.WriteLine(ReverseInt(-2147483648));
+            Console.WriteLine("\n");
+
+            //83. Remove Duplicates from Sorted List
+            ListNode removeDupes = new ListNode(1, new ListNode(1, new ListNode(2)));
+            removeDupes = DeleteDuplicates(removeDupes);
+            while (removeDupes != null)
+            {
+                Console.WriteLine(removeDupes.val);
+
+                removeDupes = removeDupes.next;
+            }
+
+            Console.WriteLine("---");
+            ListNode removeDupes2 = new ListNode(1, new ListNode(1, new ListNode(2,
+                new ListNode(3, new ListNode(3)))));
+            removeDupes2 = DeleteDuplicates(removeDupes2);
+            while (removeDupes2 != null)
+            {
+                Console.WriteLine(removeDupes2.val);
+
+                removeDupes2 = removeDupes2.next;
+            }
+
             Console.WriteLine("\n");
         }
 
@@ -449,6 +481,54 @@ namespace CSharpDsAlgo
             if (elems.Sum() > k) return --i; //check if last take was too much
 
             return i;
+        }
+
+        /// <summary>
+        /// Reverse the digits of an int
+        /// </summary>
+        /// <param name="x">int</param>
+        /// <returns>the 'reverse' int with its digits in opposite order, 0 if reversed goes out of bounds of 32 bit int</returns>
+        private static int ReverseInt(int x)
+        {
+            //some params will be long/Int64
+            char[] digits = Math.Abs((long) x).ToString().ToCharArray(); //drop the negative, can re-add last
+
+            if (digits.Length == 1) return x; //edge if only 1 digit
+
+            //reverse -> use try parse to determine if the reversed can be saved to Int32 type
+            Array.Reverse(digits);
+            if (int.TryParse(string.Join("", digits), out int rev))
+            {
+                return x < 0 ? rev * -1 : rev; //if parsed, re-add the negative if needed
+            }
+
+            return rev; //parse failed, we init to 0 so just return that
+        }
+
+        /// <summary>
+        /// Remove duplicates from a sorted list
+        /// </summary>
+        /// <param name="head">head node of sll</param>
+        /// <returns>the head node after filter</returns>
+        private static ListNode DeleteDuplicates(ListNode head)
+        {
+            if (head == null) return null;
+            ListNode walker = head;
+
+            while (walker.next != null)
+            {
+                //if two neighboring nodes match, link node to the one after
+                if (walker.val == walker.next.val)
+                {
+                    walker.next = walker.next.next;
+                }
+                else
+                {
+                    walker = walker.next; //else, step forward
+                }
+            }
+
+            return head;
         }
     }
 }
