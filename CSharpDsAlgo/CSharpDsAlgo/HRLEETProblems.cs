@@ -547,7 +547,7 @@ namespace CSharpDsAlgo
             }
             
             /*
-            //this way is actually a bit slower, but this is the linq way
+            //this is a bit slower, but this is the linq way
             Dictionary<int, int> numMap = Enumerable.Range(0, nums.Length)
                 .ToDictionary(
                     i => i,
@@ -561,7 +561,7 @@ namespace CSharpDsAlgo
                     .Select(pair => pair.Key)
                     .ToArray();
 
-                pos = new[] {idxList.DefaultIfEmpty(-1).First(), idxList.DefaultIfEmpty(-1).Last()};
+                pos = new[] {idxList.First(), idxList.Last()}; //only need the first and last positions
             }
 
             return pos;
