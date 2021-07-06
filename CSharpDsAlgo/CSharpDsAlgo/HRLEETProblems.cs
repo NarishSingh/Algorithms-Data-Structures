@@ -138,6 +138,13 @@ namespace CSharpDsAlgo
             Console.WriteLine(string.Join(",", SearchRange(new int[] { }, 0)));
             Console.WriteLine(string.Join(",", SearchRange(new[] {3, 3, 3}, 3)));
             Console.WriteLine("\n");
+
+            //287. Find the Duplicate Number
+            Console.WriteLine(FindDuplicate(new[] {1, 3, 4, 2, 2}));
+            Console.WriteLine(FindDuplicate(new[] {3, 1, 3, 4, 2}));
+            Console.WriteLine(FindDuplicate(new[] {1, 1}));
+            Console.WriteLine(FindDuplicate(new[] {1, 1, 2}));
+            Console.WriteLine("\n");
         }
 
         /// <summary>
@@ -536,7 +543,7 @@ namespace CSharpDsAlgo
         /// </summary>
         /// <param name="nums">int arr</param>
         /// <param name="target">target int to find</param>
-        /// <returns>arr with the first and last positon, [-1,-1] if not found</returns>
+        /// <returns>arr with the first and last position, [-1,-1] if not found</returns>
         private static int[] SearchRange(int[] nums, int target)
         {
             int[] pos = {-1, -1};
@@ -545,7 +552,7 @@ namespace CSharpDsAlgo
             {
                 numMap.Add(i, nums[i]);
             }
-            
+
             /*
             //this is a bit slower, but this is the linq way
             Dictionary<int, int> numMap = Enumerable.Range(0, nums.Length)
@@ -565,6 +572,31 @@ namespace CSharpDsAlgo
             }
 
             return pos;
+        }
+
+        /// <summary>
+        /// Find the duplicate in the arr w/o modifying and constant extra space
+        /// </summary>
+        /// <param name="nums">int arr</param>
+        /// <returns>int with a duplicate in arr</returns>
+        private static int FindDuplicate(int[] nums)
+        {
+            //todo fails on large nums
+            int idx = 0;
+            int current = nums[idx];
+
+            while (idx < nums.Length - 1)
+            {
+                for (int i = 0; i < nums.Length; i++)
+                {
+                    if (current - nums[i] == 0 && i != idx) return current;
+                }
+
+                current = nums[++idx];
+            }
+
+
+            return int.MinValue; //won't ever hit this
         }
     }
 }
