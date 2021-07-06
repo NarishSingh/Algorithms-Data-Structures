@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Remoting.Metadata.W3cXsd2001;
 
 namespace CSharpDsAlgo
 {
@@ -131,6 +130,13 @@ namespace CSharpDsAlgo
                 removeDupes2 = removeDupes2.next;
             }
 
+            Console.WriteLine("\n");
+
+            //34. Find First and Last Position of Element in Sorted Array
+            Console.WriteLine(string.Join(",", SearchRange(new[] {5, 7, 7, 8, 8, 10}, 8)));
+            Console.WriteLine(string.Join(",", SearchRange(new[] {5, 7, 7, 8, 8, 10}, 6)));
+            Console.WriteLine(string.Join(",", SearchRange(new int[] { }, 0)));
+            Console.WriteLine(string.Join(",", SearchRange(new[] {3, 3, 3}, 3)));
             Console.WriteLine("\n");
         }
 
@@ -518,17 +524,47 @@ namespace CSharpDsAlgo
             while (walker.next != null)
             {
                 //if two neighboring nodes match, link node to the one after
-                if (walker.val == walker.next.val)
-                {
-                    walker.next = walker.next.next;
-                }
-                else
-                {
-                    walker = walker.next; //else, step forward
-                }
+                if (walker.val == walker.next.val) walker.next = walker.next.next;
+                else walker = walker.next; //else, step forward
             }
 
             return head;
+        }
+
+        /// <summary>
+        /// Find the starting and ending position of the target
+        /// </summary>
+        /// <param name="nums">int arr</param>
+        /// <param name="target">target int to find</param>
+        /// <returns>arr with the first and last positon, [-1,-1] if not found</returns>
+        private static int[] SearchRange(int[] nums, int target)
+        {
+            int[] pos = {-1, -1};
+            Dictionary<int, int> numMap = new Dictionary<int, int>();
+            for (int i = 0; i < nums.Length; i++)
+            {
+                numMap.Add(i, nums[i]);
+            }
+            
+            /*
+            //this way is actually a bit slower, but this is the linq way
+            Dictionary<int, int> numMap = Enumerable.Range(0, nums.Length)
+                .ToDictionary(
+                    i => i,
+                    i => nums[i]
+                );
+            */
+
+            if (numMap.ContainsValue(target))
+            {
+                IEnumerable<int> idxList = numMap.Where(pair => pair.Value == target)
+                    .Select(pair => pair.Key)
+                    .ToArray();
+
+                pos = new[] {idxList.DefaultIfEmpty(-1).First(), idxList.DefaultIfEmpty(-1).Last()};
+            }
+
+            return pos;
         }
     }
 }
