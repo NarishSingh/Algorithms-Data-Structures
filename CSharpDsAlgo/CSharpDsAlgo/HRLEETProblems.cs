@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 
 namespace CSharpDsAlgo
 {
@@ -144,6 +146,9 @@ namespace CSharpDsAlgo
             Console.WriteLine(FindDuplicate(new[] {3, 1, 3, 4, 2}));
             Console.WriteLine(FindDuplicate(new[] {1, 1}));
             Console.WriteLine(FindDuplicate(new[] {1, 1, 2}));
+            Console.WriteLine("\n");
+
+            //
             Console.WriteLine("\n");
         }
 
@@ -597,6 +602,45 @@ namespace CSharpDsAlgo
 
 
             return int.MinValue; //won't ever hit this
+        }
+
+        /// <summary>
+        /// Calculate the fine on the date returned
+        /// </summary>d
+        /// <param name="d1">day of actual return</param>
+        /// <param name="m1">month of actual return</param>
+        /// <param name="y1">year of actual return</param>
+        /// <param name="d2">day of due date</param>
+        /// <param name="m2">month of due date</param>
+        /// <param name="y2">year of due date</param>
+        /// <returns>the fine</returns>
+        private static int LibraryFine(int d1, int m1, int y1, int d2, int m2, int y2)
+        {
+            DateTime returnDate = DateTime.ParseExact(string.Join("/", d1, m1, y1), "dd/MM/yyyy",
+                CultureInfo.InvariantCulture);
+            DateTime dueDate = DateTime.ParseExact(string.Join("/", d2, m2, y2)"dd/MM/yyyy",
+                CultureInfo.InvariantCulture);
+
+            TimeSpan timeSpan = returnDate - dueDate;
+
+            if (timeSpan <= TimeSpan.Zero) return 0; //book return before or on time
+
+            //todo MAKE A SWITCH STATEMENT, TO GET THE DAYS OF THE MONTH FOR THE DUEDATE MONTH
+            int inMonth;
+            
+            //late, but within a month
+            if (timeSpan.TotalDays <= inMonth && returnDate.Year == dueDate.Year)
+            {
+                return (int) (15 * timeSpan.TotalDays);
+            }
+            
+            //late but within same year
+            if (timeSpan.TotalDays > inMonth && returnDate.Year == dueDate.Year)
+            {
+                return (int) (500 * timeSpan.TotalDays);
+            }
+
+            return 10000; //past the year of due date
         }
     }
 }
