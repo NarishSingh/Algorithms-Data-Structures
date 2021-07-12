@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Threading;
 
 namespace CSharpDsAlgo
 {
@@ -688,11 +686,10 @@ namespace CSharpDsAlgo
         {
             if (llist == null) return new ListNode(data);
 
-            ListNode clone = llist;
             return new ListNode
             {
                 val = data,
-                next = clone
+                next = llist
             };
         }
 
