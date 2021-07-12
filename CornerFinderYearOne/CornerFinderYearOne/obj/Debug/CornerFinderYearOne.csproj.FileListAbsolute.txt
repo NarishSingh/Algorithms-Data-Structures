@@ -1,0 +1,6 @@
+C:\Users\naris\Documents\Work\TECHHIRE\REPOSITORY\Algorithms-Data-Structures\CornerFinderYearOne\CornerFinderYearOne\bin\Debug\CornerFinderYearOne.exe
+C:\Users\naris\Documents\Work\TECHHIRE\REPOSITORY\Algorithms-Data-Structures\CornerFinderYearOne\CornerFinderYearOne\bin\Debug\CornerFinderYearOne.pdb
+C:\Users\naris\Documents\Work\TECHHIRE\REPOSITORY\Algorithms-Data-Structures\CornerFinderYearOne\CornerFinderYearOne\obj\Debug\CornerFinderYearOne.csprojAssemblyReference.cache
+C:\Users\naris\Documents\Work\TECHHIRE\REPOSITORY\Algorithms-Data-Structures\CornerFinderYearOne\CornerFinderYearOne\obj\Debug\CornerFinderYearOne.csproj.CoreCompileInputs.cache
+C:\Users\naris\Documents\Work\TECHHIRE\REPOSITORY\Algorithms-Data-Structures\CornerFinderYearOne\CornerFinderYearOne\obj\Debug\CornerFinderYearOne.exe
+C:\Users\naris\Documents\Work\TECHHIRE\REPOSITORY\Algorithms-Data-Structures\CornerFinderYearOne\CornerFinderYearOne\obj\Debug\CornerFinderYearOne.pdb
