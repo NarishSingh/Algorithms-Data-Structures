@@ -128,7 +128,6 @@ namespace CSharpDsAlgo
             while (removeDupes2 != null)
             {
                 Console.WriteLine(removeDupes2.val);
-
                 removeDupes2 = removeDupes2.next;
             }
 
@@ -153,6 +152,38 @@ namespace CSharpDsAlgo
             Console.WriteLine(LibraryFine(9, 6, 2015, 6, 6, 2015));
             Console.WriteLine(LibraryFine(2, 7, 1014, 1, 1, 1014));
             Console.WriteLine(LibraryFine(5, 5, 2014, 23, 2, 2014));
+            Console.WriteLine("\n");
+
+            //Insert a node at the head of a linked list
+            ListNode testHead = null;
+            testHead = InsertNodeAtHead(testHead, 383);
+            testHead = InsertNodeAtHead(testHead, 484);
+            testHead = InsertNodeAtHead(testHead, 392);
+            testHead = InsertNodeAtHead(testHead, 975);
+            testHead = InsertNodeAtHead(testHead, 321);
+
+            while (testHead != null)
+            {
+                Console.WriteLine(testHead.val);
+                testHead = testHead.next;
+            }
+
+            Console.WriteLine("\n");
+
+            //Insert a Node at the Tail of a Linked List
+            ListNode testHeadForTail = null;
+            testHeadForTail = InsertNodeAtTail(testHeadForTail, 141);
+            testHeadForTail = InsertNodeAtTail(testHeadForTail, 302);
+            testHeadForTail = InsertNodeAtTail(testHeadForTail, 164);
+            testHeadForTail = InsertNodeAtTail(testHeadForTail, 530);
+            testHeadForTail = InsertNodeAtTail(testHeadForTail, 474);
+
+            while (testHeadForTail != null)
+            {
+                Console.WriteLine(testHeadForTail.val);
+                testHeadForTail = testHeadForTail.next;
+            }
+
             Console.WriteLine("\n");
         }
 
@@ -637,6 +668,39 @@ namespace CSharpDsAlgo
             if (returnDate.Year == dueDate.Year) return 500 * Math.Abs(returnDate.Month - dueDate.Month);
 
             return 10000; //past the year of due date
+        }
+
+        /// <summary>
+        /// Insert a node at head of SLL
+        /// </summary>
+        /// <param name="llist">Head ListNode of a SLL</param>
+        /// <param name="data">int to insert at head</param>
+        /// <returns>Head ListNode of new SLL post insertion</returns>
+        private static ListNode InsertNodeAtHead(ListNode llist, int data)
+        {
+            if (llist == null) return new ListNode(data);
+
+            ListNode clone = llist;
+            return new ListNode
+            {
+                val = data,
+                next = clone
+            };
+        }
+
+        private static ListNode InsertNodeAtTail(ListNode head, int data)
+        {
+            if (head == null) return new ListNode(data);
+
+            ListNode clone = head;
+            while (head.next != null)
+            {
+                head = head.next;
+            }
+
+            head.next = new ListNode(data);
+
+            return clone;
         }
     }
 }
