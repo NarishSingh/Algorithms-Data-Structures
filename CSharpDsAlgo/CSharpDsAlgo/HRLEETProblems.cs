@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading;
 
 namespace CSharpDsAlgo
@@ -184,6 +185,13 @@ namespace CSharpDsAlgo
                 testHeadForTail = testHeadForTail.next;
             }
 
+            Console.WriteLine("\n");
+
+            //Balanced Brackets
+            Console.WriteLine(IsBalanced("{[()]}"));
+            Console.WriteLine(IsBalanced("{[(])}"));
+            Console.WriteLine(IsBalanced("{{[[(())]]}}"));
+            Console.WriteLine(IsBalanced("{(([])[])[]]}"));
             Console.WriteLine("\n");
         }
 
@@ -701,6 +709,47 @@ namespace CSharpDsAlgo
             head.next = new ListNode(data);
 
             return clone;
+        }
+
+        /// <summary>
+        /// Check if the brackets of a string are balanced = if {[( are closed by a matching }])
+        /// </summary>
+        /// <param name="s">string with brackets</param>
+        /// <returns>YES if balanced, NO otherwise</returns>
+        private static string IsBalanced(string s)
+        {
+            Stack<char> bracStac = new Stack<char>();
+            Regex op = new Regex("[{\\[(]");
+            Regex cl = new Regex("[}\\])]");
+
+            foreach (char c in s)
+            {
+                Match opening = op.Match(c.ToString());
+                Match closing = cl.Match(c.ToString());
+
+                if (opening.Success) bracStac.Push(c); //if opening push onto stack
+                if (!closing.Success) continue; //if not closing, skip to next iteration
+
+                //if closing, check if there is its matching opening, if so then pop
+                char openerForC = '\0'; //null char
+                switch (c)
+                {
+                    case '}':
+                        openerForC = '{';
+                        break;
+                    case ']':
+                        openerForC = '[';
+                        break;
+                    case ')':
+                        openerForC = '(';
+                        break;
+                }
+
+                if (bracStac.Peek() != openerForC) return "NO"; //if not a match, unbalanced
+                bracStac.Pop();
+            }
+
+            return bracStac.Count == 0 ? "YES" : "NO";
         }
     }
 }
