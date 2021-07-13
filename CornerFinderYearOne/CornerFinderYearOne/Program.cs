@@ -34,8 +34,8 @@ namespace CornerFinderYearOne
                 {
                     if (image[i, j] == 0)
                     {
-                        resArr.SetValue(i, 0, 0);
-                        resArr.SetValue(j, 0, 1);
+                        resArr[0, 0] = i;
+                        resArr[0, 1] = j;
                         break;
                     }
                 }
@@ -49,8 +49,8 @@ namespace CornerFinderYearOne
                 {
                     if (image[i, j] == 0)
                     {
-                        resArr.SetValue(i, 1, 0);
-                        resArr.SetValue(j, 1, 1);
+                        resArr[1, 0] = image.GetLength(0) - i; //since we start from back, need to correct
+                        resArr[1, 1] = j;
                         break;
                     }
                 }
@@ -70,7 +70,7 @@ namespace CornerFinderYearOne
                 Console.WriteLine($"[{results[i, 0]},{results[i, 1]}]");
             }
 
-            Console.WriteLine();
+            Console.WriteLine("---");
         }
 
         public static void Main(string[] args)
@@ -79,15 +79,6 @@ namespace CornerFinderYearOne
             {
                 {1, 1, 1, 1, 1, 1, 1},
                 {1, 1, 1, 1, 1, 1, 1},
-                {1, 1, 1, 0, 0, 0, 1},
-                {1, 1, 1, 0, 0, 0, 1},
-                {1, 1, 1, 1, 1, 1, 1}
-            };
-
-            int[,] image1MultiBox =
-            {
-                {0, 0, 1, 1, 1, 1, 1},
-                {0, 0, 1, 1, 1, 1, 1},
                 {1, 1, 1, 0, 0, 0, 1},
                 {1, 1, 1, 0, 0, 0, 1},
                 {1, 1, 1, 1, 1, 1, 1}
@@ -123,6 +114,15 @@ namespace CornerFinderYearOne
             int[,] image5 =
             {
                 {0}
+            };
+            
+            int[,] image1MultiBox =
+            {
+                {0, 0, 1, 1, 1, 1, 1},
+                {0, 0, 1, 1, 1, 1, 1},
+                {1, 1, 1, 0, 0, 0, 1},
+                {1, 1, 1, 0, 0, 0, 1},
+                {1, 1, 1, 1, 1, 1, 1}
             };
 
             //1. only 1 rect
