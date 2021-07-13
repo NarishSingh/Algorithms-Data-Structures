@@ -191,6 +191,12 @@ namespace CSharpDsAlgo
             Console.WriteLine(IsBalanced("{{[[(())]]}}"));
             Console.WriteLine(IsBalanced("{(([])[])[]]}"));
             Console.WriteLine("\n");
+
+            //Electronics Shop
+            Console.WriteLine(GetMoneySpent(new[] {40, 50, 60}, new[] {5, 8, 12}, 60));
+            Console.WriteLine(GetMoneySpent(new[] {3, 1}, new[] {5, 2, 8}, 10));
+            Console.WriteLine(GetMoneySpent(new[] {4}, new[] {5}, 5));
+            Console.WriteLine("\n");
         }
 
         /// <summary>
@@ -747,6 +753,45 @@ namespace CSharpDsAlgo
             }
 
             return bracStac.Count == 0 ? "YES" : "NO";
+        }
+
+        /// <summary>
+        /// Find the highest possible combination of 1 element from each of the 2 arr's that are under the target
+        /// </summary>
+        /// <param name="keyboards">int arr of keyboard prices</param>
+        /// <param name="drives">int arr of drive prices</param>
+        /// <param name="b">int target for budget</param>
+        /// <returns>int for the highest possible combo of elements/price under target/budget</returns>
+        private static int GetMoneySpent(int[] keyboards, int[] drives, int b)
+        {
+            //fails on massive arr's
+            /*
+            if (keyboards.Min() + drives.Min() > b) return -1; //edge
+
+            //create price combinations
+            List<int> priceCombos = keyboards.SelectMany(
+                kb => drives,
+                (kb, dr) => kb + dr
+            ).ToList();
+
+            //filter and return the max combo price below b
+            return priceCombos.Where(p => p < b).Max();
+            */
+
+            int[] kbDesc = keyboards.OrderByDescending(i => i).ToArray(); //start from most expensive
+            Array.Sort(drives); //start from cheapest
+
+            int max = -1;
+            for (int i = 0; i < keyboards.Length; i++)
+            {
+                foreach (int dr in drives)
+                {
+                    if (kbDesc[i] + dr > b) break; //if cannot purchase a drive with this kb, skip
+                    if (kbDesc[i] + dr > max) max = kbDesc[i] + dr;
+                }
+            }
+
+            return max;
         }
     }
 }
