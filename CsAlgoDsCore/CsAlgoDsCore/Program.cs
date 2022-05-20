@@ -796,10 +796,9 @@ public class HRLEETProblems
             }
         }
 
-        Console.WriteLine(
-            kNums.Any()
-                ? string.Join(" ", kNums)
-                : "INVALID RANGE"
+        Console.WriteLine(kNums.Any()
+            ? string.Join(" ", kNums)
+            : "INVALID RANGE"
         );
     }
 }
