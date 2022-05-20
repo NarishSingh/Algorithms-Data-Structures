@@ -653,7 +653,7 @@ public class HRLEETProblems
     /// <returns>YES if balanced, NO otherwise</returns>
     private static string IsBalanced(string s)
     {
-        Stack<char> bracStac = new Stack<char>();
+        Stack<char> bracStak = new Stack<char>();
         Regex op = new Regex("[{\\[(]");
         Regex cl = new Regex("[}\\])]");
 
@@ -662,29 +662,23 @@ public class HRLEETProblems
             Match opening = op.Match(c.ToString());
             Match closing = cl.Match(c.ToString());
 
-            if (opening.Success) bracStac.Push(c); //if opening push onto stack
+            if (opening.Success) bracStak.Push(c); //if opening push onto stack
             if (!closing.Success) continue; //if not closing, skip to next iteration
 
             //if closing, check if there is its matching opening, if so then pop
-            char openerForC = '\0'; //null char
-            switch (c)
+            char openerForC = c switch
             {
-                case '}':
-                    openerForC = '{';
-                    break;
-                case ']':
-                    openerForC = '[';
-                    break;
-                case ')':
-                    openerForC = '(';
-                    break;
-            }
+                '}' => '{',
+                ']' => '[',
+                ')' => '(',
+                _ => '\0'
+            };
 
-            if (bracStac.Peek() != openerForC) return "NO"; //if not a match, unbalanced
-            bracStac.Pop();
+            if (bracStak.Peek() != openerForC) return "NO"; //if not a match, unbalanced
+            bracStak.Pop();
         }
 
-        return bracStac.Count == 0 ? "YES" : "NO";
+        return bracStak.Count == 0 ? "YES" : "NO";
     }
 
     /// <summary>
@@ -710,17 +704,16 @@ public class HRLEETProblems
         return priceCombos.Where(p => p < b).Max();
         */
 
-        int[] kbDesc = keyboards.OrderByDescending(i => i).ToArray(); //start from most expensive
+        int[] kb = keyboards.OrderByDescending(i => i).ToArray(); //start from most expensive
         Array.Sort(drives); //start from cheapest
 
         int max = -1;
         for (int i = 0; i < keyboards.Length; i++)
         {
-            foreach (int dr in drives)
-            {
-                if (kbDesc[i] + dr > b) break; //if cannot purchase a drive with this kb, skip
-                if (kbDesc[i] + dr > max) max = kbDesc[i] + dr;
-            }
+            max = drives.TakeWhile(dr => kb[i] + dr <= b)
+                .Select(dr => kb[i] + dr)
+                .Prepend(max)
+                .Max();
         }
 
         return max;
