@@ -13,11 +13,11 @@ public class HRLEETProblems
 
         //CompareTriplets
         List<int> alice1 = new() { 1, 2, 3 };
-        List<int> bob1 = new () { 3, 2, 1 };
-        List<int> alice2 = new () { 5, 6, 7 };
-        List<int> bob2 = new () { 3, 6, 10 };
-        List<int> alice3 = new () { 17, 28, 30 };
-        List<int> bob3 = new () { 99, 16, 8 };
+        List<int> bob1 = new() { 3, 2, 1 };
+        List<int> alice2 = new() { 5, 6, 7 };
+        List<int> bob2 = new() { 3, 6, 10 };
+        List<int> alice3 = new() { 17, 28, 30 };
+        List<int> bob3 = new() { 99, 16, 8 };
         Console.WriteLine($"Alice - {string.Join(",", alice1)} | Bob - {string.Join(",", bob1)} " +
                           $"-> {string.Join(",", CompareTriplets(alice1, bob1))}");
         Console.WriteLine($"Alice - {string.Join(",", alice2)} | Bob - {string.Join(",", bob2)} " +
@@ -34,28 +34,26 @@ public class HRLEETProblems
         //Subarray Division
         Console.WriteLine(Birthday(new() { 1, 2, 1, 3, 2 }, 3, 2));
         Console.WriteLine(Birthday(new() { 1, 1, 1, 1, 1, 1 }, 3, 2));
-        Console.WriteLine(Birthday(new () { 4 }, 4, 1));
+        Console.WriteLine(Birthday(new() { 4 }, 4, 1));
         Console.WriteLine("\n");
 
         //Divisible Sum Pairs
-        Console.WriteLine(DivisibleSumPairs(6, 5, new () { 1, 2, 3, 4, 5, 6 }));
-        Console.WriteLine(DivisibleSumPairs(6, 3, new () { 1, 3, 2, 6, 1, 2 }));
+        Console.WriteLine(DivisibleSumPairs(6, 5, new() { 1, 2, 3, 4, 5, 6 }));
+        Console.WriteLine(DivisibleSumPairs(6, 3, new() { 1, 3, 2, 6, 1, 2 }));
         Console.WriteLine("\n");
 
         //Sock Merchant
-        Console.WriteLine(SockMerchant(9, new () { 10, 20, 20, 10, 10, 30, 50, 10, 20 }));
+        Console.WriteLine(SockMerchant(9, new() { 10, 20, 20, 10, 10, 30, 50, 10, 20 }));
         Console.WriteLine("\n");
 
         //Angry Professor
-        Console.WriteLine(AngryProfessor(3, new List<int> { -1, -3, 4, 2 }));
-        Console.WriteLine(AngryProfessor(2, new List<int> { 0, -1, 2, 1 }));
+        Console.WriteLine(AngryProfessor(3, new() { -1, -3, 4, 2 }));
+        Console.WriteLine(AngryProfessor(2, new() { 0, -1, 2, 1 }));
         Console.WriteLine("\n");
 
         //Circular Array Rotation
-        Console.WriteLine(string.Join(",",
-            CircularArrayRotation(new List<int> { 3, 4, 5 }, 2, new List<int> { 1, 2 })));
-        Console.WriteLine(string.Join(",",
-            CircularArrayRotation(new List<int> { 1, 2, 3 }, 2, new List<int> { 0, 1, 2 })));
+        Console.WriteLine(string.Join(",", CircularArrayRotation(new() { 3, 4, 5 }, 2, new() { 1, 2 })));
+        Console.WriteLine(string.Join(",", CircularArrayRotation(new() { 1, 2, 3 }, 2, new() { 0, 1, 2 })));
         Console.WriteLine("\n");
 
         //Save the prisoner
@@ -72,15 +70,15 @@ public class HRLEETProblems
         Console.WriteLine("\n");
 
         //Jumping the clouds
-        Console.WriteLine(jumpingOnClouds(new List<int> { 0, 1, 0, 0, 0, 1, 0 }));
-        Console.WriteLine(jumpingOnClouds(new List<int> { 0, 0, 1, 0, 0, 1, 0 }));
-        Console.WriteLine(jumpingOnClouds(new List<int> { 0, 0, 0, 0, 1, 0 }));
-        Console.WriteLine(jumpingOnClouds(new List<int> { 0, 0, 0, 1, 0, 0 }));
+        Console.WriteLine(jumpingOnClouds(new() { 0, 1, 0, 0, 0, 1, 0 }));
+        Console.WriteLine(jumpingOnClouds(new() { 0, 0, 1, 0, 0, 1, 0 }));
+        Console.WriteLine(jumpingOnClouds(new() { 0, 0, 0, 0, 1, 0 }));
+        Console.WriteLine(jumpingOnClouds(new() { 0, 0, 0, 1, 0, 0 }));
         Console.WriteLine("\n");
 
         //Equalize the array
-        Console.WriteLine(EqualizeArray(new List<int> { 1, 2, 2, 3 }));
-        Console.WriteLine(EqualizeArray(new List<int> { 3, 3, 2, 1, 3 }));
+        Console.WriteLine(EqualizeArray(new() { 1, 2, 2, 3 }));
+        Console.WriteLine(EqualizeArray(new() { 3, 3, 2, 1, 3 }));
         Console.WriteLine("\n");
 
         //Counting valleys
@@ -90,13 +88,13 @@ public class HRLEETProblems
         Console.WriteLine("\n");
 
         //Arrays: Left Rotation
-        Console.WriteLine(string.Join(",", RotLeft(new List<int> { 1, 2, 3, 4, 5 }, 2)));
-        Console.WriteLine(string.Join(",", RotLeft(new List<int> { 1, 2, 3, 4, 5 }, 4)));
+        Console.WriteLine(string.Join(",", RotLeft(new() { 1, 2, 3, 4, 5 }, 2)));
+        Console.WriteLine(string.Join(",", RotLeft(new() { 1, 2, 3, 4, 5 }, 4)));
         Console.WriteLine("\n");
 
         //Mark and Toys
-        Console.WriteLine(MaximumToys(new List<int> { 1, 2, 3, 4 }, 7));
-        Console.WriteLine(MaximumToys(new List<int> { 1, 12, 5, 111, 200, 1000, 10 }, 50));
+        Console.WriteLine(MaximumToys(new() { 1, 2, 3, 4 }, 7));
+        Console.WriteLine(MaximumToys(new() { 1, 12, 5, 111, 200, 1000, 10 }, 50));
         Console.WriteLine("\n");
 
         //Reverse Int
@@ -132,7 +130,7 @@ public class HRLEETProblems
         //34. Find First and Last Position of Element in Sorted Array
         Console.WriteLine(string.Join(",", SearchRange(new[] { 5, 7, 7, 8, 8, 10 }, 8)));
         Console.WriteLine(string.Join(",", SearchRange(new[] { 5, 7, 7, 8, 8, 10 }, 6)));
-        Console.WriteLine(string.Join(",", SearchRange(new int[] { }, 0)));
+        Console.WriteLine(string.Join(",", SearchRange(Array.Empty<int>(), 0)));
         Console.WriteLine(string.Join(",", SearchRange(new[] { 3, 3, 3 }, 3)));
         Console.WriteLine("\n");
 
@@ -201,10 +199,7 @@ public class HRLEETProblems
     /// </summary>
     /// <param name="ar">List representing an array of integers</param>
     /// <returns>int for the sum</returns>
-    private static int SimpleArraySum(List<int> ar)
-    {
-        return ar.Sum();
-    }
+    private static int SimpleArraySum(List<int> ar) => ar.Sum();
 
     /// <summary>
     /// Compare two lists of 3, awarding points to a or b based on which is greater at a given index
@@ -218,22 +213,13 @@ public class HRLEETProblems
 
         for (int i = 0; i < a.Count; i++)
         {
-            if (a[i] == b[i])
-            {
-                continue;
-            }
-
-            if (a[i] > b[i])
-            {
-                aScore++;
-            }
-            else
-            {
-                bScore++;
-            }
+            if (a[i] == b[i]) continue;
+            
+            if (a[i] > b[i]) aScore++;
+            else bScore++;
         }
 
-        return new List<int> { aScore, bScore };
+        return new() { aScore, bScore };
     }
 
     /// <summary>
@@ -245,17 +231,9 @@ public class HRLEETProblems
     /// <returns>string "Cat A" or "Cat B" if one catches mouse, "Mouse C" if escapes</returns>
     private static string CatAndMouse(int x, int y, int z)
     {
-        if (Math.Abs(z - x) == Math.Abs(z - y))
-        {
-            return "Mouse C";
-        }
+        if (Math.Abs(z - x) == Math.Abs(z - y)) return "Mouse C";
 
-        if (Math.Abs(z - x) > Math.Abs(z - y))
-        {
-            return "Cat B";
-        }
-
-        return "Cat A";
+        return Math.Abs(z - x) > Math.Abs(z - y) ? "Cat B" : "Cat A";
     }
 
     /// <summary>
@@ -268,13 +246,9 @@ public class HRLEETProblems
     private static int Birthday(List<int> s, int d, int m)
     {
         int divCt = 0;
-
         for (int i = 0; i < s.Count - (m - 1); i++)
         {
-            if (s.GetRange(i, m).Sum() == d)
-            {
-                divCt++;
-            }
+            if (s.GetRange(i, m).Sum() == d) divCt++;
         }
 
         return divCt;
@@ -296,9 +270,7 @@ public class HRLEETProblems
             for (int j = i + 1; j < ar.Count; j++)
             {
                 if (i < j && (ar[i] + ar[j]) % k == 0)
-                {
                     pairs++;
-                }
             }
         }
 
