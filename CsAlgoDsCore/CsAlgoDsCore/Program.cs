@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace CsAlgoDsCore;
 
@@ -193,13 +194,19 @@ public class HRLEETProblems
         Console.WriteLine(GetMoneySpent(new[] { 4 }, new[] { 5 }, 5));
         Console.WriteLine("\n");
 
+        //Hurdle Race
         Console.WriteLine(HurdleRace(4, new() { 1, 6, 3, 5, 2 }));
         Console.WriteLine(HurdleRace(7, new() { 2, 5, 4, 5, 2 }));
         Console.WriteLine("\n");
 
+        //Cut the sticks
         Console.WriteLine(string.Join(",", CutTheSticks(new() { 1, 2, 3 })));
         Console.WriteLine(string.Join(",", CutTheSticks(new() { 5, 4, 4, 2, 2, 8 })));
         Console.WriteLine(string.Join(",", CutTheSticks(new() { 1, 2, 3, 4, 3, 3, 2, 1 })));
+        Console.WriteLine("\n");
+
+        //Mod Kap Nums
+        KaprekarNumbers(1, 100);
         Console.WriteLine("\n");
     }
 
@@ -759,5 +766,40 @@ public class HRLEETProblems
 
         stickCt.Add(arr.Count); //need the end count also
         return stickCt;
+    }
+
+    /// <summary>
+    /// Print the modified Kaprekar nums within range p - q
+    /// When squared, its digits will add up to the original num
+    /// </summary>
+    /// <param name="p">lower bound</param>
+    /// <param name="q">upper bound</param>
+    private static void KaprekarNumbers(int p, int q)
+    {
+        List<double> kNums = new();
+        for (int i = p; i <= q; i++)
+        {
+            double sq = Math.Pow(i, 2);
+            char[] sqChunks = sq.ToString(CultureInfo.InvariantCulture).ToCharArray();
+
+            if (sqChunks.Length > 1)
+            {
+                int half = sqChunks.Length / 2;
+                int firstHalf = int.Parse(new string(sqChunks[..half]));
+                int lastHalf = int.Parse(new string(sqChunks[half..]));
+
+                if (firstHalf + lastHalf == i) kNums.Add(i);
+            }
+            else if (int.Parse(sqChunks[0].ToString()) == i)
+            {
+                kNums.Add(i);
+            }
+        }
+
+        Console.WriteLine(
+            kNums.Any()
+                ? string.Join(" ", kNums)
+                : "INVALID RANGE"
+        );
     }
 }
