@@ -499,9 +499,9 @@ public class HRLEETProblems
     private static int ReverseInt(int x)
     {
         //some params will be long/Int64
-        char[] digits = Math.Abs((long) x) //drop the negative, can re-add last
+        char[] digits = Math.Abs((long)x) //drop the negative, can re-add last
             .ToString()
-            .ToCharArray(); 
+            .ToCharArray();
 
         if (digits.Length == 1) return x; //edge if only 1 digit
 
@@ -541,8 +541,7 @@ public class HRLEETProblems
     /// <returns>arr with the first and last position, [-1,-1] if not found</returns>
     private static int[] SearchRange(int[] nums, int target)
     {
-        int[] pos = { -1, -1 };
-        Dictionary<int, int> numMap = new Dictionary<int, int>();
+        Dictionary<int, int> numMap = new();
         for (int i = 0; i < nums.Length; i++)
         {
             numMap.Add(i, nums[i]);
@@ -557,16 +556,13 @@ public class HRLEETProblems
             );
         */
 
-        if (numMap.ContainsValue(target))
-        {
-            IEnumerable<int> idxList = numMap.Where(pair => pair.Value == target)
-                .Select(pair => pair.Key)
-                .ToArray();
+        if (!numMap.ContainsValue(target)) return new[] { -1, -1 };
 
-            pos = new[] { idxList.First(), idxList.Last() }; //only need the first and last positions
-        }
+        int[] idxList = numMap.Where(pair => pair.Value == target)
+            .Select(pair => pair.Key)
+            .ToArray();
 
-        return pos;
+        return new[] { idxList.First(), idxList.Last() }; //only need the first and last positions
     }
 
     /// <summary>
@@ -582,14 +578,11 @@ public class HRLEETProblems
 
         while (idx < nums.Length - 1)
         {
-            for (int i = 0; i < nums.Length; i++)
-            {
-                if (current - nums[i] == 0 && i != idx) return current;
-            }
+            if (nums.Where((n, i) => current - n == 0 && i != idx).Any())
+                return current;
 
             current = nums[++idx];
         }
-
 
         return int.MinValue; //won't ever hit this
     }
@@ -606,10 +599,8 @@ public class HRLEETProblems
     /// <returns>the fine</returns>
     private static int LibraryFine(int d1, int m1, int y1, int d2, int m2, int y2)
     {
-        DateTime returnDate = DateTime.ParseExact(string.Join("/", d1, m1, y1), "d/M/yyyy",
-            null);
-        DateTime dueDate = DateTime.ParseExact(string.Join("/", d2, m2, y2), "d/M/yyyy",
-            null);
+        DateTime returnDate = DateTime.ParseExact(string.Join("/", d1, m1, y1), "d/M/yyyy", null);
+        DateTime dueDate = DateTime.ParseExact(string.Join("/", d2, m2, y2), "d/M/yyyy", null);
 
         TimeSpan timeSpan = returnDate - dueDate;
 
@@ -631,16 +622,14 @@ public class HRLEETProblems
     /// <param name="llist">Head ListNode of a SLL</param>
     /// <param name="data">int to insert at head</param>
     /// <returns>Head ListNode of new SLL post insertion</returns>
-    private static ListNode? InsertNodeAtHead(ListNode? llist, int data)
-    {
-        if (llist == null) return new ListNode(data);
-
-        return new ListNode
-        {
-            Val = data,
-            Next = llist
-        };
-    }
+    private static ListNode? InsertNodeAtHead(ListNode? llist, int data) =>
+        llist == null
+            ? new ListNode(data)
+            : new ListNode
+            {
+                Val = data,
+                Next = llist
+            };
 
     private static ListNode? InsertNodeAtTail(ListNode? head, int data)
     {
