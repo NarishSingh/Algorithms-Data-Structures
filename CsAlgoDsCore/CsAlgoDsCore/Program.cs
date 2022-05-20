@@ -192,6 +192,15 @@ public class HRLEETProblems
         Console.WriteLine(GetMoneySpent(new[] { 3, 1 }, new[] { 5, 2, 8 }, 10));
         Console.WriteLine(GetMoneySpent(new[] { 4 }, new[] { 5 }, 5));
         Console.WriteLine("\n");
+
+        Console.WriteLine(HurdleRace(4, new() { 1, 6, 3, 5, 2 }));
+        Console.WriteLine(HurdleRace(7, new() { 2, 5, 4, 5, 2 }));
+        Console.WriteLine("\n");
+
+        Console.WriteLine(string.Join(",", CutTheSticks(new() { 1, 2, 3 })));
+        Console.WriteLine(string.Join(",", CutTheSticks(new() { 5, 4, 4, 2, 2, 8 })));
+        Console.WriteLine(string.Join(",", CutTheSticks(new() { 1, 2, 3, 4, 3, 3, 2, 1 })));
+        Console.WriteLine("\n");
     }
 
     /// <summary>
@@ -717,5 +726,38 @@ public class HRLEETProblems
         }
 
         return max;
+    }
+
+    /// <summary>
+    /// Get the number of +1 height potions the player has to take to jump all hurdles in the race
+    /// </summary>
+    /// <param name="k">The base jump height of player</param>
+    /// <param name="height">List of hurdle heights</param>
+    /// <returns>Number of +1 potions to take</returns>
+    private static int HurdleRace(int k, List<int> height) => k >= height.Max() ? 0 : height.Max() - k;
+
+    /// <summary>
+    /// Find the shortest stick each iteration, chop that length from the longer sticks, and discard the shortest.
+    /// Continue until all sticks are the same length
+    /// Return the number of sticks from each iteration
+    /// </summary>
+    /// <param name="arr">Int List with the length of sticks</param>
+    /// <returns>A list of the sticks from each iteration</returns>
+    private static List<int> CutTheSticks(List<int> arr)
+    {
+        List<int> stickCt = new();
+        while (arr.Any(n => n != arr[0]))
+        {
+            stickCt.Add(arr.Count); //grab the count before operations
+
+            //find the shortest and remove
+            int min = arr.Min();
+            _ = arr.RemoveAll(n => n == min);
+
+            arr = arr.Select(n => n - min).ToList(); //subtract shortest the remaining sticks
+        }
+
+        stickCt.Add(arr.Count); //need the end count also
+        return stickCt;
     }
 }
