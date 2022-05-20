@@ -214,7 +214,7 @@ public class HRLEETProblems
         for (int i = 0; i < a.Count; i++)
         {
             if (a[i] == b[i]) continue;
-            
+
             if (a[i] > b[i]) aScore++;
             else bScore++;
         }
@@ -255,7 +255,7 @@ public class HRLEETProblems
     }
 
     /// <summary>
-    /// Given a list, find pairs (i,j) where i,j and the pair is divisible by k 
+    /// Given a list, find pairs of indices where the pair is divisible by k 
     /// </summary>
     /// <param name="n">length of list</param>
     /// <param name="k">divisor</param>
@@ -303,10 +303,7 @@ public class HRLEETProblems
     /// <param name="k">int for threshold</param>
     /// <param name="a">student arrival times, any positive int indicates lateness</param>
     /// <returns>"YES" if class cancelled, "NO" if proceeds</returns>
-    private static string AngryProfessor(int k, List<int> a)
-    {
-        return a.Count(s => s <= 0) >= k ? "NO" : "YES"; //LINQ to filter and sum # of timely students
-    }
+    private static string AngryProfessor(int k, List<int> a) => a.Count(s => s <= 0) >= k ? "NO" : "YES";
 
     /// <summary>
     /// Perform circular rotations on the list, then report the the indices specified
@@ -346,14 +343,8 @@ public class HRLEETProblems
             distr[i] = s;
 
             //restart at 1 due to circular seating, else increment s
-            if (s == n)
-            {
-                s = 1;
-            }
-            else
-            {
-                s++;
-            }
+            if (s == n) s = 1;
+            else s++;
         }
 
         // Console.WriteLine(string.Join(",", distr));
@@ -388,7 +379,6 @@ public class HRLEETProblems
     private static int jumpingOnClouds(List<int> c)
     {
         int i = 0, jumps = 0;
-
         while (i < c.Count - 1)
         {
             //look ahead 2 indices, if both safe, jump 2 i's, else jump 1
@@ -416,13 +406,7 @@ public class HRLEETProblems
     {
         //create a set of distinct numbers so we know what to get counts of
         HashSet<int> numSet = arr.ToHashSet();
-
-        //use hash set to find counts of each num
-        List<int> numCts = new List<int>();
-        foreach (int num in numSet)
-        {
-            numCts.Add(arr.Count(n => n == num));
-        }
+        List<int> numCts = numSet.Select(num => arr.Count(n => n == num)).ToList();
 
         return arr.Count - numCts.Max(); //count - the # of max elements = the min to delete for uniform list
     }
@@ -442,14 +426,8 @@ public class HRLEETProblems
         //render path as a list of alt's at a given index of string
         foreach (char step in path)
         {
-            if (step == 'U')
-            {
-                pathAlts.Add(++currentAlt);
-            }
-            else
-            {
-                pathAlts.Add(--currentAlt);
-            }
+            if (step == 'U') pathAlts.Add(++currentAlt);
+            else pathAlts.Add(--currentAlt);
         }
 
         bool valleyFlag = false;
@@ -457,10 +435,7 @@ public class HRLEETProblems
         foreach (int alt in pathAlts)
         {
             //if dips below 0, entered a valley
-            if (alt == -1)
-            {
-                valleyFlag = true;
-            }
+            if (alt == -1) valleyFlag = true;
 
             //if entered a valley, and we reach 0, we completed a valley encounter
             if (valleyFlag && alt == 0)
@@ -503,14 +478,13 @@ public class HRLEETProblems
         //sort prices from min to max
         prices.Sort();
         int i = 0; //incremental amount to take
-        List<int> elems = new List<int>();
+        List<int> elems = new();
 
         //Take from list, until you find reach the target
         while (elems.Sum() < k)
         {
             elems = prices.Take(++i).ToList();
         }
-
 
         if (elems.Sum() > k) return --i; //check if last take was too much
 
@@ -525,16 +499,16 @@ public class HRLEETProblems
     private static int ReverseInt(int x)
     {
         //some params will be long/Int64
-        char[] digits = Math.Abs((long)x).ToString().ToCharArray(); //drop the negative, can re-add last
+        char[] digits = Math.Abs((long) x) //drop the negative, can re-add last
+            .ToString()
+            .ToCharArray(); 
 
         if (digits.Length == 1) return x; //edge if only 1 digit
 
         //reverse -> use try parse to determine if the reversed can be saved to Int32 type
         Array.Reverse(digits);
         if (int.TryParse(string.Join("", digits), out int rev))
-        {
             return x < 0 ? rev * -1 : rev; //if parsed, re-add the negative if needed
-        }
 
         return rev; //parse failed, we init to 0 so just return that
     }
