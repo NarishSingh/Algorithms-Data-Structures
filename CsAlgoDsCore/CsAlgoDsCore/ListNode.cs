@@ -2,8 +2,8 @@
 
 public class ListNode
 {
-    public int Val;
-    public ListNode? Next;
+    public int Val { get; set; }
+    public ListNode? Next { get; set; }
 
     public ListNode(int val = 0, ListNode? next = null)
     {

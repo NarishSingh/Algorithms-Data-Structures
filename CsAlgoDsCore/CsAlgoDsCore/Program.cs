@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.Text;
 using System.Text.RegularExpressions;
 using CsAlgoDsCore;
 
@@ -211,6 +212,88 @@ Console.WriteLine("\n");
 MoveZeroes(new[] { 0, 1, 0, 3, 12 });
 MoveZeroes(new[] { 0 });
 Console.WriteLine("\n");
+
+/*CODE WARS*/
+Console.WriteLine(SameCase('a', 'g'));
+Console.WriteLine(SameCase('C', 'A'));
+Console.WriteLine(SameCase('b', 'G'));
+Console.WriteLine(SameCase('B', 'g'));
+Console.WriteLine(SameCase('0', '?'));
+
+Console.WriteLine("----");
+Console.WriteLine($"din - {DuplicateEncode("din")}");
+Console.WriteLine($"recede - {DuplicateEncode("recede")}");
+Console.WriteLine($"Success - {DuplicateEncode("Success")}");
+Console.WriteLine($"(( @ - {DuplicateEncode("(( @")}");
+
+Console.WriteLine("----");
+Console.WriteLine($"{TotalPoints(new[] { "1:0", "2:0", "3:0", "4:0", "2:1", "3:1", "4:1", "3:2", "4:2", "4:3" })}");
+Console.WriteLine($"{TotalPoints(new[] { "1:1", "2:2", "3:3", "4:4", "2:2", "3:3", "4:4", "3:3", "4:4", "4:4" })}");
+Console.WriteLine($"{TotalPoints(new[] { "0:1", "0:2", "0:3", "0:4", "1:2", "1:3", "1:4", "2:3", "2:4", "3:4" })}");
+Console.WriteLine($"{TotalPoints(new[] { "1:0", "2:0", "3:0", "4:0", "2:1", "1:3", "1:4", "2:3", "2:4", "3:4" })}");
+Console.WriteLine($"{TotalPoints(new[] { "1:0", "2:0", "3:0", "4:4", "2:2", "3:3", "1:4", "2:3", "2:4", "3:4" })}");
+
+Console.WriteLine("----");
+Console.WriteLine($"{SpinWords("Welcome")}");
+Console.WriteLine($"{SpinWords("Hey fellow warriors")}");
+Console.WriteLine($"{SpinWords("This is a test")}");
+Console.WriteLine($"{SpinWords("This is another test")}");
+Console.WriteLine($"{SpinWords("You are almost to the last test")}");
+Console.WriteLine($"{SpinWords("Just kidding there is still one more")}");
+
+Console.WriteLine("----");
+Console.WriteLine($"{CountMinutes(DateTime.Now.Date.AddHours(12))}");
+Console.WriteLine($"{CountMinutes(DateTime.Now.Date.AddHours(23).AddMinutes(59))}");
+
+Console.WriteLine("----");
+Console.WriteLine(PigIt("Pig latin is cool"));
+Console.WriteLine(PigIt("Hello world !"));
+Console.WriteLine(PigIt("This is my string"));
+
+Console.WriteLine("----");
+Console.WriteLine(Encrypt("This is a test!", 0));
+Console.WriteLine(Encrypt("This is a test!", 1));
+Console.WriteLine(Encrypt("This is a test!", 2));
+Console.WriteLine(Encrypt("This is a test!", 3));
+Console.WriteLine(Encrypt("This is a test!", 4));
+Console.WriteLine(Encrypt("This is a test!", -1));
+Console.WriteLine(Encrypt("This kata is very interesting!", 1));
+
+Console.WriteLine("*");
+Console.WriteLine(Decrypt("This is a test!", 0));
+Console.WriteLine(Decrypt("hsi  etTi sats!", 1));
+Console.WriteLine(Decrypt("s eT ashi tist!", 2));
+Console.WriteLine(Decrypt(" Tah itse sits!", 3));
+Console.WriteLine(Decrypt("This is a test!", 4));
+Console.WriteLine(Decrypt("This is a test!", -1));
+Console.WriteLine(Decrypt("hskt svr neetn!Ti aai eyitrsig", 1));
+
+Console.WriteLine("----");
+Console.WriteLine(ToCamelCase("the_stealth_warrior"));
+Console.WriteLine(ToCamelCase("The-Stealth-Warrior"));
+
+Console.WriteLine("----");
+Console.WriteLine(string.Join("", UniqueInOrder("").ToList()));
+Console.WriteLine(string.Join("", UniqueInOrder("AAAABBBCCDAABBB").ToList()));
+Console.WriteLine(string.Join("", UniqueInOrder("ABBCcAD").ToList()));
+Console.WriteLine(string.Join("", UniqueInOrder(new[] { 1, 2, 2, 3, 3 }).ToList()));
+
+Console.WriteLine("----");
+Console.WriteLine(FindIt(new[] { 7 }));
+Console.WriteLine(FindIt(new[] { 0 }));
+Console.WriteLine(FindIt(new[] { 1, 1, 2 }));
+Console.WriteLine(FindIt(new[] { 1, 2, 2, 3, 3, 3, 4, 3, 3, 3, 2, 2, 1 }));
+Console.WriteLine(FindIt(new[] { 20, 1, -1, 2, -2, 3, 3, 5, 5, 1, 2, 4, 20, 4, -1, -2, 5 }));
+
+//Greed is Good
+Console.WriteLine("----");
+Console.WriteLine(Score(new[] { 5, 1, 3, 4, 1 }));
+Console.WriteLine(Score(new[] { 1, 1, 1, 3, 1 }));
+Console.WriteLine(Score(new[] { 2, 4, 4, 5, 4 }));
+Console.WriteLine(Score(new[] { 2, 3, 4, 6, 2 }));
+Console.WriteLine(Score(new[] { 4, 4, 4, 3, 3 }));
+Console.WriteLine(Score(new[] { 2, 4, 4, 5, 4 }));
+
 
 /// <summary>
 /// Find the sum of an array/list of integers
@@ -832,4 +915,287 @@ static void MoveZeroes(int[] nums)
     numList.AddRange(Enumerable.Repeat(0, removed));
 
     Console.WriteLine(string.Join(",", numList));
+}
+
+/// <summary>
+/// Verify if two chars are in the same case
+/// </summary>
+/// <param name="a">1st char</param>
+/// <param name="b">2nd char</param>
+/// <returns>1 if both chars are the same case, 0 if not, and -1 if either char is not a letter</returns>
+static int SameCase(char a, char b)
+{
+    if (!char.IsLetter(a) || !char.IsLetter(b))
+        return -1;
+
+    return char.IsLower(a) == char.IsLower(b) ? 1 : 0;
+}
+
+/// <summary>
+/// Encode a string such that a char is replaced with '(' if it appears only one, and ')' otherwise
+/// </summary>
+/// <param name="word">string to encode</param>
+/// <returns>The encoded string</returns>
+static string DuplicateEncode(string word)
+{
+    string lower = word.ToLower();
+    List<char> dupes = lower
+        .ToHashSet()
+        .ToDictionary(
+            ch => ch,
+            ch => word.Count(c => c == ch)
+        )
+        .Where(kv => kv.Value > 1)
+        .Select(kv => kv.Key)
+        .ToList();
+
+    StringBuilder sb = new();
+    foreach (char c in lower)
+    {
+        sb.Append(dupes.Contains(c) ? ')' : '(');
+    }
+
+    return sb.ToString();
+}
+
+/// <summary>
+/// Get the total points for a team this season
+/// </summary>
+/// <param name="games">array of 10 strings of format "x:y" with x being our team</param>
+/// <returns>Total points based on the season performance</returns>
+static int TotalPoints(string[] games)
+{
+    int pts = 0;
+
+    foreach (string game in games)
+    {
+        if (game[0] == game[2])
+            pts++;
+        else if (game[0] > game[2])
+            pts += 3;
+    }
+
+    return pts;
+}
+
+/// <summary>
+/// Take a sentence, and reverse in place all of the words with length >= 5
+/// </summary>
+/// <param name="sentence">A complete sentence of one or more words</param>
+/// <returns>The sentence with the spin conditions applied</returns>
+static string SpinWords(string sentence)
+{
+    if (string.IsNullOrWhiteSpace(sentence)) return sentence;
+
+    string[] words = sentence.Split(" ");
+    if (words.Length == 0) return sentence;
+
+    switch (words.Length)
+    {
+        case <= 1 when words.First().Length >= 5:
+            return new string(sentence.ToCharArray().Reverse().ToArray());
+        case <= 1:
+            return sentence;
+    }
+
+    for (int i = 0; i < words.Length; i++)
+    {
+        string word = words[i];
+        if (word.Length >= 5) words[i] = new string(word.Reverse().ToArray());
+    }
+
+    return string.Join(" ", words);
+
+    // return string.Join(" ", sentence.Split(' ').Select(s => s.Length >= 5 ? new string(s.Reverse().ToArray()) : s)); //one line version
+}
+
+/// <summary>
+/// Given a DateTime, count the minutes until midnight of the same day
+/// </summary>
+/// <param name="d">DateTime object with today's date, and a random timestamp</param>
+/// <returns>Minutes to midnight as a string</returns>
+static string CountMinutes(DateTime d)
+{
+    TimeSpan midnight = DateTime.Today.AddHours(24).TimeOfDay;
+    Console.WriteLine(midnight);
+    Console.WriteLine(d.TimeOfDay);
+    double timeTo = (midnight - d.TimeOfDay).TotalMinutes;
+    return $"{timeTo} {(timeTo == 1 ? "minute" : "minutes")}";
+}
+
+/// <summary>
+/// Convert each string to pig latin, leaving punctuation and spacing in place
+/// </summary>
+/// <param name="str">string to be converted</param>
+/// <returns>The string converted to pig latin</returns>
+static string PigIt(string str)
+{
+    StringBuilder sb = new();
+    string[] words = str.Split(' ');
+
+    foreach (string w in words)
+    {
+        if (char.IsPunctuation(w[0])) sb.Append(w).Append(' '); //leave punctuation alone
+        else sb.Append(w[1..]).Append(w[0]).Append("ay").Append(' ');
+    }
+
+    sb.Length--; //strip last ' '
+
+    return sb.ToString();
+
+    // return string.Join(" ", str.Split(" ").Select(w => char.IsPunctuation(w[0]) ? w : $"{w[1..]}{w[0]}ay")); //one liner 
+}
+
+/// <summary>
+/// Encrypt string by concatenating the odd-index chars with the even index chars, n number of times
+/// </summary>
+/// <param name="text">string to encrypt</param>
+/// <param name="n">int number of iterations to pass the string through</param>
+/// <returns>The encrypted string</returns>
+static string Encrypt(string text, int n)
+{
+    if (string.IsNullOrWhiteSpace(text) || n < 1) return text;
+
+    string enc = text;
+    for (int i = 0; i < n; i++)
+    {
+        string odd = new(enc.Where((_, i) => i % 2 != 0).ToArray());
+        string even = new(enc.Where((_, i) => i % 2 == 0).ToArray());
+        enc = $"{odd}{even}";
+    }
+
+    return enc;
+}
+
+/// <summary>
+/// Decrypt the string, using the reverse algorithm from Encrypt(string text, int n)
+/// </summary>
+/// <param name="encryptedText">string to decrypt</param>
+/// <param name="n">int number of iterations to pass the string through</param>
+/// <returns>The decrypted string</returns>
+static string Decrypt(string encryptedText, int n)
+{
+    if (string.IsNullOrWhiteSpace(encryptedText) || n < 1) return encryptedText;
+
+    StringBuilder sb = new();
+    string deEnc = encryptedText;
+    string fst = deEnc[..(deEnc.Length / 2)];
+    string scd = deEnc[(deEnc.Length / 2 + 1)..];
+
+    for (int i = 0; i < fst.Length; i++)
+    {
+        sb.Append(fst[i]);
+        sb.Append(scd.ElementAtOrDefault(i)); //try to get it, but likely will be shorter
+    }
+
+    return deEnc;
+}
+
+/// <summary>
+/// Take a '-' or '_' delimited string and convert it to camel case
+/// </summary>
+/// <param name="str">string to convert</param>
+/// <returns>Camel cased string</returns>
+static string ToCamelCase(string str)
+{
+    TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
+    string[] words = str.Split(new char[] { '-', '_' });
+
+    //leave first word alone
+    for (int i = 1; i < words.Length; i++)
+    {
+        words[i] = textInfo.ToTitleCase(words[i]);
+    }
+
+    return string.Join("", words);
+}
+
+/// <summary>
+/// Process out strictly sequential duplicates, and preverse the order of the elements
+/// </summary>
+/// <param name="iterable">Generic IEnumerable</param>
+/// <typeparam name="T">no type restriction</typeparam>
+/// <returns>IEnumerable where unique elements in order are preserved</returns>
+static IEnumerable<T> UniqueInOrder<T>(IEnumerable<T> iterable)
+{
+    //dump to list approach
+    List<T> list = iterable.ToList();
+    T? current = default;
+    List<T> uniques = new();
+
+    foreach (T item in list.Where(item => !Equals(item, current)))
+    {
+        current = item;
+        uniques.Add(current);
+    }
+
+    return uniques;
+
+    //working on the iterable
+    /*
+    T? prev = default;
+    foreach (T curr in iterable)
+    {
+        if (!curr.Equals(prev))
+        {
+            prev = curr;
+            yield return curr;
+        }
+    }
+    */
+}
+
+/// <summary>
+/// Find the integer that appears an odd number of times
+/// Will always be only 1 number that appears an odd number of times
+/// </summary>
+/// <param name="seq">int array</param>
+/// <returns>The int that appears an odd number of times</returns>
+static int FindIt(int[] seq) =>
+    seq.GroupBy(n => n)
+        .Single(group => group.Count() % 2 == 1)
+        .Key;
+/*
+//first attempt
+seq.GroupBy(n => n)
+    .Where(group => group.Count() % 2 != 0)
+    .First()
+    .First();
+*/
+
+/// <summary>
+/// Given an array of 5 * 6-sided dice, return the score if:
+/// 3 x 1's = 1000 pts
+/// 3 x 6's = 600 pts
+/// 3 x 5's = 500 pts
+/// 3 x 4's = 400 pts
+/// 3 x 3's = 300 pts
+/// 3 x 2's = 200 pts
+/// 1 x 1 = 100 pts
+/// 1 * 5 = 50 pts
+/// </summary>
+/// <param name="dice">int array of length 5, each being within a range of 1-6 inclusive</param>
+/// <returns>Game score based on rolls</returns>
+static int Score(int[] dice)
+{
+    Dictionary<int, int> dict = dice.GroupBy(n => n)
+        .ToDictionary(
+            group => group.Key,
+            group => group.Count()
+        );
+
+    return dict.Sum(
+        kv => kv.Key switch
+        {
+            1 when kv.Value == 3 => 1000,
+            1 => 100,
+            2 when kv.Value == 3 => 200,
+            3 when kv.Value == 3 => 300,
+            4 when kv.Value == 3 => 400,
+            5 when kv.Value == 3 => 500,
+            5 => 50,
+            6 when kv.Value == 3 => 600,
+            _ => 0 //shouldn't hit this
+        }
+    );
 }
