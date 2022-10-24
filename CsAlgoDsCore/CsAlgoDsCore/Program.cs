@@ -6,7 +6,7 @@ using CsAlgoDsCore;
 Console.WriteLine("---SimpleArraySum---");
 List<int> l1 = new() { 1, 2, 3, 4, 10, 11 };
 Console.WriteLine($"Sum of {string.Join(",", l1)} is {SimpleArraySum(l1)}");
-Console.WriteLine("\n");
+Console.WriteLine();
 
 Console.WriteLine("---CompareTriplets---");
 List<int> alice1 = new() { 1, 2, 3 };
@@ -21,38 +21,38 @@ Console.WriteLine($"Alice - {string.Join(",", alice2)} | Bob - {string.Join(",",
                   $"-> {string.Join(",", CompareTriplets(alice2, bob2))}");
 Console.WriteLine($"Alice - {string.Join(",", alice3)} | Bob - {string.Join(",", bob3)} " +
                   $"-> {string.Join(",", CompareTriplets(alice3, bob3))}");
-Console.WriteLine("\n");
+Console.WriteLine();
 
 Console.WriteLine("---CatAndMouse---");
 Console.WriteLine(CatAndMouse(1, 2, 3));
 Console.WriteLine(CatAndMouse(1, 3, 2));
-Console.WriteLine("\n");
+Console.WriteLine();
 
 Console.WriteLine("---Birthday---");
 Console.WriteLine(Birthday(new() { 1, 2, 1, 3, 2 }, 3, 2));
 Console.WriteLine(Birthday(new() { 1, 1, 1, 1, 1, 1 }, 3, 2));
 Console.WriteLine(Birthday(new() { 4 }, 4, 1));
-Console.WriteLine("\n");
+Console.WriteLine();
 
 Console.WriteLine("---DivisibleSumPairs---");
 Console.WriteLine(DivisibleSumPairs(6, 5, new() { 1, 2, 3, 4, 5, 6 }));
 Console.WriteLine(DivisibleSumPairs(6, 3, new() { 1, 3, 2, 6, 1, 2 }));
-Console.WriteLine("\n");
+Console.WriteLine();
 
 Console.WriteLine("---SockMerchant---");
-Console.WriteLine(SockMerchant(9, new() { 10, 20, 20, 10, 10, 30, 50, 10, 20 }));
-Console.WriteLine("\n");
+// Console.WriteLine(SockMerchant(9, new() { 10, 20, 20, 10, 10, 30, 50, 10, 20 }));
+Console.WriteLine();
 
 Console.WriteLine("---AngryProfessor---");
 Console.WriteLine(AngryProfessor(3, new() { -1, -3, 4, 2 }));
 Console.WriteLine(AngryProfessor(2, new() { 0, -1, 2, 1 }));
-Console.WriteLine("\n");
+Console.WriteLine();
 
 //Circular Array Rotation
 Console.WriteLine("---CircularArrayRotation---");
 Console.WriteLine(string.Join(",", CircularArrayRotation(new() { 3, 4, 5 }, 2, new() { 1, 2 })));
 Console.WriteLine(string.Join(",", CircularArrayRotation(new() { 1, 2, 3 }, 2, new() { 0, 1, 2 })));
-Console.WriteLine("\n");
+Console.WriteLine();
 
 //Save the prisoner
 Console.WriteLine("---SaveThePrisoner---");
@@ -60,42 +60,42 @@ Console.WriteLine(SaveThePrisoner(5, 2, 1));
 Console.WriteLine(SaveThePrisoner(5, 2, 2));
 Console.WriteLine(SaveThePrisoner(7, 19, 2));
 Console.WriteLine(SaveThePrisoner(3, 7, 3));
-Console.WriteLine("\n");
+Console.WriteLine();
 
 //Repeated String
 Console.WriteLine("---RepeatedString---");
 Console.WriteLine(RepeatedString("aba", 10));
 Console.WriteLine(RepeatedString("a", 1000000000000));
 Console.WriteLine(RepeatedString("x", 970770));
-Console.WriteLine("\n");
+Console.WriteLine();
 
 //Jumping the clouds
 Console.WriteLine(JumpingOnClouds(new() { 0, 1, 0, 0, 0, 1, 0 }));
 Console.WriteLine(JumpingOnClouds(new() { 0, 0, 1, 0, 0, 1, 0 }));
 Console.WriteLine(JumpingOnClouds(new() { 0, 0, 0, 0, 1, 0 }));
 Console.WriteLine(JumpingOnClouds(new() { 0, 0, 0, 1, 0, 0 }));
-Console.WriteLine("\n");
+Console.WriteLine();
 
 //Equalize the array
 Console.WriteLine(EqualizeArray(new() { 1, 2, 2, 3 }));
 Console.WriteLine(EqualizeArray(new() { 3, 3, 2, 1, 3 }));
-Console.WriteLine("\n");
+Console.WriteLine();
 
 //Counting valleys
 Console.WriteLine(CountingValleys(8, "DDUUUUDD"));
 Console.WriteLine(CountingValleys(8, "UDDDUDUU"));
 Console.WriteLine(CountingValleys(12, "DDUUDDUDUUUD"));
-Console.WriteLine("\n");
+Console.WriteLine();
 
 //Arrays: Left Rotation
 Console.WriteLine(string.Join(",", RotLeft(new() { 1, 2, 3, 4, 5 }, 2)));
 Console.WriteLine(string.Join(",", RotLeft(new() { 1, 2, 3, 4, 5 }, 4)));
-Console.WriteLine("\n");
+Console.WriteLine();
 
 //Mark and Toys
 Console.WriteLine(MaximumToys(new() { 1, 2, 3, 4 }, 7));
 Console.WriteLine(MaximumToys(new() { 1, 12, 5, 111, 200, 1000, 10 }, 50));
-Console.WriteLine("\n");
+Console.WriteLine();
 
 //Reverse Int
 Console.WriteLine(ReverseInt(123));
@@ -103,7 +103,7 @@ Console.WriteLine(ReverseInt(-123));
 Console.WriteLine(ReverseInt(120));
 Console.WriteLine(ReverseInt(0));
 Console.WriteLine(ReverseInt(-2147483648));
-Console.WriteLine("\n");
+Console.WriteLine();
 
 //83. Remove Duplicates from Sorted List
 ListNode? removeDupes = new ListNode(1, new ListNode(1, new ListNode(2)));
@@ -125,28 +125,28 @@ while (removeDupes2 != null)
     removeDupes2 = removeDupes2.Next;
 }
 
-Console.WriteLine("\n");
+Console.WriteLine();
 
 //34. Find First and Last Position of Element in Sorted Array
 Console.WriteLine(string.Join(",", SearchRange(new[] { 5, 7, 7, 8, 8, 10 }, 8)));
 Console.WriteLine(string.Join(",", SearchRange(new[] { 5, 7, 7, 8, 8, 10 }, 6)));
 Console.WriteLine(string.Join(",", SearchRange(Array.Empty<int>(), 0)));
 Console.WriteLine(string.Join(",", SearchRange(new[] { 3, 3, 3 }, 3)));
-Console.WriteLine("\n");
+Console.WriteLine();
 
 //287. Find the Duplicate Number
 Console.WriteLine(FindDuplicate(new[] { 1, 3, 4, 2, 2 }));
 Console.WriteLine(FindDuplicate(new[] { 3, 1, 3, 4, 2 }));
 Console.WriteLine(FindDuplicate(new[] { 1, 1 }));
 Console.WriteLine(FindDuplicate(new[] { 1, 1, 2 }));
-Console.WriteLine("\n");
+Console.WriteLine();
 
 //Library Fine
 Console.WriteLine(LibraryFine(14, 7, 2018, 5, 7, 2018));
 Console.WriteLine(LibraryFine(9, 6, 2015, 6, 6, 2015));
 Console.WriteLine(LibraryFine(2, 7, 1014, 1, 1, 1014));
 Console.WriteLine(LibraryFine(5, 5, 2014, 23, 2, 2014));
-Console.WriteLine("\n");
+Console.WriteLine();
 
 //Insert a node at the head of a linked list
 ListNode? testHead = null;
@@ -162,7 +162,7 @@ while (testHead != null)
     testHead = testHead.Next;
 }
 
-Console.WriteLine("\n");
+Console.WriteLine();
 
 //Insert a Node at the Tail of a Linked List
 ListNode? testHeadForTail = null;
@@ -178,40 +178,40 @@ while (testHeadForTail != null)
     testHeadForTail = testHeadForTail.Next;
 }
 
-Console.WriteLine("\n");
+Console.WriteLine();
 
 //Balanced Brackets
 Console.WriteLine(IsBalanced(@"{[()]}"));
 Console.WriteLine(IsBalanced(@"{[(])}"));
 Console.WriteLine(IsBalanced(@"{{[[(())]]}}"));
 Console.WriteLine(IsBalanced(@"{(([])[])[]]}"));
-Console.WriteLine("\n");
+Console.WriteLine();
 
 //Electronics Shop
 Console.WriteLine(GetMoneySpent(new[] { 40, 50, 60 }, new[] { 5, 8, 12 }, 60));
 Console.WriteLine(GetMoneySpent(new[] { 3, 1 }, new[] { 5, 2, 8 }, 10));
 Console.WriteLine(GetMoneySpent(new[] { 4 }, new[] { 5 }, 5));
-Console.WriteLine("\n");
+Console.WriteLine();
 
 //Hurdle Race
 Console.WriteLine(HurdleRace(4, new() { 1, 6, 3, 5, 2 }));
 Console.WriteLine(HurdleRace(7, new() { 2, 5, 4, 5, 2 }));
-Console.WriteLine("\n");
+Console.WriteLine();
 
 //Cut the sticks
 Console.WriteLine(string.Join(",", CutTheSticks(new() { 1, 2, 3 })));
 Console.WriteLine(string.Join(",", CutTheSticks(new() { 5, 4, 4, 2, 2, 8 })));
 Console.WriteLine(string.Join(",", CutTheSticks(new() { 1, 2, 3, 4, 3, 3, 2, 1 })));
-Console.WriteLine("\n");
+Console.WriteLine();
 
 //Mod Kap Nums
 KaprekarNumbers(1, 100);
-Console.WriteLine("\n");
+Console.WriteLine();
 
 //Move Zeroes
 MoveZeroes(new[] { 0, 1, 0, 3, 12 });
 MoveZeroes(new[] { 0 });
-Console.WriteLine("\n");
+Console.WriteLine();
 
 /*CODE WARS*/
 Console.WriteLine(SameCase('a', 'g'));
@@ -294,6 +294,43 @@ Console.WriteLine(Score(new[] { 2, 3, 4, 6, 2 }));
 Console.WriteLine(Score(new[] { 4, 4, 4, 3, 3 }));
 Console.WriteLine(Score(new[] { 2, 4, 4, 5, 4 }));
 
+//CSV Representation of Array
+Console.WriteLine("----");
+Console.WriteLine(ToCsvText(new[]
+{
+    new[] { 0, 1, 2, 3, 45 },
+    new[] { 10, 11, 12, 13, 14 },
+    new[] { 20, 21, 22, 23, 24 },
+    new[] { 30, 31, 32, 33, 34 }
+}));
+Console.WriteLine();
+Console.WriteLine(ToCsvText(new[]
+{
+    new[] { -25, 21, 2, -33, 48 },
+    new[] { 30, 31, -32, 33, -34 }
+}));
+Console.WriteLine();
+Console.WriteLine(ToCsvText(new[]
+{
+    new[] { 5, 55, 5, 5, 55 },
+    new[] { 6, 6, 66, 23, 24 },
+    new[] { 666, 31, 66, 33, 7 }
+}));
+
+//Who Likes It?
+Console.WriteLine("----");
+Console.WriteLine(Likes(Array.Empty<string>()));
+Console.WriteLine(Likes(new[] { "Peter" }));
+Console.WriteLine(Likes(new[] { "Jacob", "Alex" }));
+Console.WriteLine(Likes(new[] { "Max", "John", "Mark" }));
+Console.WriteLine(Likes(new[] { "Alex", "Jacob", "Mark", "Max" }));
+
+Console.WriteLine("----");
+Console.WriteLine(ToWeirdCase("String"));
+Console.WriteLine(ToWeirdCase("Weird string case"));
+Console.WriteLine(ToWeirdCase("This"));
+Console.WriteLine(ToWeirdCase("is"));
+Console.WriteLine(ToWeirdCase("This is a test"));
 
 /// <summary>
 /// Find the sum of an array/list of integers
@@ -1198,4 +1235,38 @@ static int Score(int[] dice)
             _ => 0 //shouldn't hit this
         }
     );
+}
+
+static string ToCsvText(int[][] array) => string.Join("\n", array.Select(row => string.Join(",", row)));
+/*
+{
+    StringBuilder sb = new();
+    foreach (int[] row in array)
+    {
+        sb.Append(string.Join(",", row));
+        sb.Append('\n');
+    }
+
+    sb.Length--;
+
+    return sb.ToString();
+}
+*/
+
+static string Likes(string[] name) => name.Length switch
+{
+    > 3 => $"{name[0]}, {name[1]} and {name.Length - 2} others like this",
+    3 => $"{name[0]}, {name[1]} and {name[2]} like this",
+    2 => $"{name[0]} and {name[1]} like this",
+    1 => $"{name[0]} likes this",
+    _ => "no one likes this"
+};
+
+static string ToWeirdCase(string s)
+{
+    IEnumerable<string> weird = s
+        .Split(' ')
+        .Select(word => new string(word.Select((c, i) => i % 2 == 0 ? char.ToUpper(c) : char.ToLower(c)).ToArray()));
+
+    return string.Join(" ", weird);
 }
